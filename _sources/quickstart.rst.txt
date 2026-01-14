@@ -57,4 +57,4 @@ the venv module installed, run the commands listed below in your terminal:
 
 .. code:: bash
 
-   python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 22,80,443
+   sudo python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 22,80,443

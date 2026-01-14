@@ -29,11 +29,11 @@ Example usages
 
 .. code-block:: bash
 
-   python3 main.py -t 192.168.0.0/24 --scan_type icmp
-   python3 main.py -t 127.0.0.1/32 -s SYN -p 22
-   python3 main.py --target 192.168.0.0/30 -s ICMP
-   python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 20,21,22
-   python3 main.py --target 192.168.1.0/24 --scan_type SYN
+   sudo python3 main.py -t 192.168.0.0/24 --scan_type icmp
+   sudo python3 main.py -t 127.0.0.1/32 -s SYN -p 22
+   sudo python3 main.py --target 192.168.0.0/30 -s ICMP
+   sudo python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 20,21,22
+   sudo python3 main.py --target 192.168.1.0/24 --scan_type SYN
 
 Default ports
 --------------
