@@ -6,9 +6,60 @@
 Network Analyzer documentation
 ==============================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+
+Command-line Flags
+-------------------
+
+.. option:: -t, --target <CIDR>
+
+   Target IP address range in CIDR notation for the network scan.
+
+.. option:: -s, --scan_type {SYN,ICMP}
+
+   The type of network scan to be performed.
+
+.. option:: -p, --ports <ports>
+
+   Comma-separated list of port numbers to enumerate. This is only allowed if
+   the selected scan type is a SYN scan. If no ports are specified, a default 
+   set of ports will be enumerated.
+
+Example usages
+---------------
+
+.. code-block:: bash
+
+   python3 main.py -t 192.168.0.0/24 --scan_type icmp
+   python3 main.py -t 127.0.0.1/32 -s SYN -p 22
+   python3 main.py --target 192.168.0.0/30 -s ICMP
+   python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 20,21,22
+   python3 main.py --target 192.168.1.0/24 --scan_type SYN
+
+Default ports
+--------------
+
+The following ports are scanned by default if no port list is provided for a 
+SYN scan.
+
+.. code:: python
+
+   DEFAULT_PORTS = (
+       20, 21, # FTP
+       22, # SSH
+       23, # Telnet
+       25, # SMTP
+       53, # DNS
+       88, # Kerboros
+       80, 8080, # HTTP
+       443, # HTTPs
+       110, 995, # POP3, POP3S
+       135, # RPC
+       137, 138, 139, 445, # NetBIOS, SMB
+       143, 993, # IMAP, IMAPS
+       389, # LDAP
+       3306, # MySQL
+       3389, # RDP
+   )
 
 
 .. toctree::

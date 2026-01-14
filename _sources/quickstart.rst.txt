@@ -1,44 +1,40 @@
 Quickstart Guide
 ================
 
-This quickstart guide assumes you are on a modern x64 Linux environment.
-
-1. Clone Network-Scanner
+1. Clone the repository
 ------------------------
 
-The first step is to clone the repository.
+The first step is to clone the repository
 
 .. code:: bash
 
    git clone https://github.com/sschultz9/Network-Analyzer.git
 
-2. Setup virtual environemnt
-============================
+2. Setup a virtual environemnt
+------------------------------
 
 This program was built in Python 3.13.5 and expects the user to install
 Python 3.13.5 to ensure compatibility. To build the environment, you
-must also have the python virtual environment module installed.
+must also have the python virtual environment module installed. Once you have 
+the venv module installed, run the commands listed below in your terminal:
 
-Once you have the venv module installed, run the commands listed below
-in your terminal:
-
-1. Change directories to the root of the repository.
+1. Change directories to the root of the repository
 
 .. code:: bash
 
    cd Network-Analyzer
 
-2. Create a new python virtual environment to run the program in.
+2. Create a new python virtual environment to run the program in
 
 .. code:: bash
 
-   python3 -m venv env
+   python3 -m venv venv
 
 3. Activate the newly created virtual environment
 
 .. code:: bash
 
-   source env/bin/activate
+   source venv/bin/activate
 
 4. Install the required packages
 
@@ -46,20 +42,18 @@ in your terminal:
 
    pip install -r requirements.txt
 
-Executing program
-~~~~~~~~~~~~~~~~~
+3. Execute the program
+----------------------
 
 1. Change directories to the src folder that contains main.py
 
 .. code:: bash
 
-   cd Network-Analyzer/src
+   cd src
 
-2. This is one example of how you could execute the program. Refer to
-   our
-   `documentation <https://sschultz9.github.io/Network-Analyzer-Documentation/>`__
-   website for further information regarding the various configurations
-   you can use to run our program.
+2. This is one example of how you could execute the program. Refer to this
+   website's home page for further information pertaining to various 
+   command-line flags that can be utilized
 
 .. code:: bash
 
