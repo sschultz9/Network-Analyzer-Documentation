@@ -1,0 +1,8 @@
+Scanner Module
+==============
+
+.. automodule:: scanner
+   :members:
+   :undoc-members:
+   :private-members:
+   :show-inheritance:
