@@ -109,31 +109,87 @@ sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w
 <h2>Default ports<a class="headerlink" href="#default-ports" title="Link to this heading">¶</a></h2>
 <p>The following ports are scanned by default if no port list is provided for a
 SYN scan.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DEFAULT_PORTS</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="c1"># FTP</span>
-    <span class="mi">22</span><span class="p">,</span> <span class="c1"># SSH</span>
-    <span class="mi">23</span><span class="p">,</span> <span class="c1"># Telnet</span>
-    <span class="mi">25</span><span class="p">,</span> <span class="c1"># SMTP</span>
-    <span class="mi">53</span><span class="p">,</span> <span class="c1"># DNS</span>
-    <span class="mi">88</span><span class="p">,</span> <span class="c1"># Kerboros</span>
-    <span class="mi">80</span><span class="p">,</span> <span class="mi">8080</span><span class="p">,</span> <span class="c1"># HTTP</span>
-    <span class="mi">443</span><span class="p">,</span> <span class="c1"># HTTPs</span>
-    <span class="mi">110</span><span class="p">,</span> <span class="mi">995</span><span class="p">,</span> <span class="c1"># POP3, POP3S</span>
-    <span class="mi">135</span><span class="p">,</span> <span class="c1"># RPC</span>
-    <span class="mi">137</span><span class="p">,</span> <span class="mi">138</span><span class="p">,</span> <span class="mi">139</span><span class="p">,</span> <span class="mi">445</span><span class="p">,</span> <span class="c1"># NetBIOS, SMB</span>
-    <span class="mi">143</span><span class="p">,</span> <span class="mi">993</span><span class="p">,</span> <span class="c1"># IMAP, IMAPS</span>
-    <span class="mi">389</span><span class="p">,</span> <span class="c1"># LDAP</span>
-    <span class="mi">3306</span><span class="p">,</span> <span class="c1"># MySQL</span>
-    <span class="mi">3389</span><span class="p">,</span> <span class="c1"># RDP</span>
-<span class="p">)</span>
-</pre></div>
-</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Port</p></th>
+<th class="head"><p>Service</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>FTP</p></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>FTP</p></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>SSH</p></td>
+</tr>
+<tr class="row-odd"><td><p>23</p></td>
+<td><p>Telnet</p></td>
+</tr>
+<tr class="row-even"><td><p>25</p></td>
+<td><p>SMTP</p></td>
+</tr>
+<tr class="row-odd"><td><p>53</p></td>
+<td><p>DNS</p></td>
+</tr>
+<tr class="row-even"><td><p>88</p></td>
+<td><p>Kerberos</p></td>
+</tr>
+<tr class="row-odd"><td><p>80</p></td>
+<td><p>HTTP</p></td>
+</tr>
+<tr class="row-even"><td><p>8080</p></td>
+<td><p>HTTP</p></td>
+</tr>
+<tr class="row-odd"><td><p>443</p></td>
+<td><p>HTTPS</p></td>
+</tr>
+<tr class="row-even"><td><p>110</p></td>
+<td><p>POP3</p></td>
+</tr>
+<tr class="row-odd"><td><p>995</p></td>
+<td><p>POP3S</p></td>
+</tr>
+<tr class="row-even"><td><p>135</p></td>
+<td><p>RPC</p></td>
+</tr>
+<tr class="row-odd"><td><p>137</p></td>
+<td><p>NetBIOS</p></td>
+</tr>
+<tr class="row-even"><td><p>138</p></td>
+<td><p>NetBIOS</p></td>
+</tr>
+<tr class="row-odd"><td><p>139</p></td>
+<td><p>NetBIOS</p></td>
+</tr>
+<tr class="row-even"><td><p>445</p></td>
+<td><p>SMB</p></td>
+</tr>
+<tr class="row-odd"><td><p>143</p></td>
+<td><p>IMAP</p></td>
+</tr>
+<tr class="row-even"><td><p>993</p></td>
+<td><p>IMAPS</p></td>
+</tr>
+<tr class="row-odd"><td><p>389</p></td>
+<td><p>LDAP</p></td>
+</tr>
+<tr class="row-even"><td><p>3306</p></td>
+<td><p>MySQL</p></td>
+</tr>
+<tr class="row-odd"><td><p>3389</p></td>
+<td><p>RDP</p></td>
+</tr>
+</tbody>
+</table>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#clone-the-repository">1. Clone the repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#setup-a-virtual-environemnt">2. Setup a virtual environemnt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#setup-a-virtual-environment">2. Setup a virtual environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#execute-the-program">3. Execute the program</a></li>
 </ul>
 </li>

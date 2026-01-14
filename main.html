@@ -79,9 +79,9 @@
              
   <section id="module-main">
 <span id="main-module"></span><h1>Main Module<a class="headerlink" href="#module-main" title="Link to this heading">¶</a></h1>
-<p>Main module for executing a network scan.</p>
+<p>Main module for parsing user input and executing a network scan.</p>
 <p>This module will read command line input from the user, and perform a network
-scan based on their specified configuration.</p>
+scan based on the user’s specified configuration.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="main.main">
 <span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.main" title="Link to this definition">¶</a></dt>
@@ -91,10 +91,13 @@ scan based on their specified configuration.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="main.verify_cidr">
 <span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">verify_cidr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#main.verify_cidr" title="Link to this definition">¶</a></dt>
-<dd><p>Verifies the passed in IP address is a valid CIDR IP address.</p>
+<dd><p>Verifies the passed in target IP address is a valid CIDR IP address.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – IP address in CIDR notation.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the target IP address is invalid or not in CIDR notation.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -102,7 +105,7 @@ scan based on their specified configuration.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="main.verify_ports">
 <span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">verify_ports</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ports</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#main.verify_ports" title="Link to this definition">¶</a></dt>
-<dd><p>Verifies the user entered valid port values.</p>
+<dd><p>Verifies that the user entered valid port values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ports</strong> (<em>str</em>) – A comma-separated list of port values.</p>
@@ -123,7 +126,7 @@ scan based on their specified configuration.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="main.verify_scan_type">
 <span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">verify_scan_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scan_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="scanner.html#scanner.ScanType" title="scanner.ScanType"><span class="pre">ScanType</span></a></span></span><a class="headerlink" href="#main.verify_scan_type" title="Link to this definition">¶</a></dt>
-<dd><p>Verifies the user entered a valid network scan type.</p>
+<dd><p>Verifies that the user entered a valid network scan type.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>scan_type</strong> (<em>str</em>) – The network scan type to be checked.</p>
