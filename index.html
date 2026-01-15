@@ -104,6 +104,15 @@ sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w
 sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w"> </span>--target<span class="w"> </span><span class="m">192</span>.168.1.0/24<span class="w"> </span>--scan_type<span class="w"> </span>SYN
 </pre></div>
 </div>
+<p>If the above commands do not work, you may have to replace python3 with the path
+to your virtual environment’s python executable:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>Network-Analyzer/venv/bin/python3<span class="w"> </span>main.py<span class="w"> </span>-t<span class="w"> </span><span class="m">192</span>.168.0.0/24<span class="w"> </span>--scan_type<span class="w"> </span>icmp
+sudo<span class="w"> </span>Network-Analyzer/venv/bin/python3<span class="w"> </span>main.py<span class="w"> </span>-t<span class="w"> </span><span class="m">127</span>.0.0.1/32<span class="w"> </span>-s<span class="w"> </span>SYN<span class="w"> </span>-p<span class="w"> </span><span class="m">22</span>
+sudo<span class="w"> </span>Network-Analyzer/venv/bin/python3<span class="w"> </span>main.py<span class="w"> </span>--target<span class="w"> </span><span class="m">192</span>.168.0.0/30<span class="w"> </span>-s<span class="w"> </span>ICMP
+sudo<span class="w"> </span>Network-Analyzer/venv/bin/python3<span class="w"> </span>main.py<span class="w"> </span>--target<span class="w"> </span><span class="m">192</span>.168.1.0/24<span class="w"> </span>--scan_type<span class="w"> </span>SYN<span class="w"> </span>--ports<span class="w"> </span><span class="m">20</span>,21,22
+sudo<span class="w"> </span>Network-Analyzer/venv/bin/python3<span class="w"> </span>main.py<span class="w"> </span>--target<span class="w"> </span><span class="m">192</span>.168.1.0/24<span class="w"> </span>--scan_type<span class="w"> </span>SYN
+</pre></div>
+</div>
 </section>
 <section id="default-ports">
 <h2>Default ports<a class="headerlink" href="#default-ports" title="Link to this heading">¶</a></h2>

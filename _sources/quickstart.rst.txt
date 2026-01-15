@@ -58,3 +58,10 @@ the venv module installed, run the commands listed below in your terminal:
 .. code:: bash
 
    sudo python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 22,80,443
+
+If the above command does not work, you may have to replace python3 with the path
+to your virtual environment's python executable:
+
+.. code:: bash
+
+   sudo ../venv/bin/python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 22,80,443

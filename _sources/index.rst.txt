@@ -35,6 +35,17 @@ Example usages
    sudo python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 20,21,22
    sudo python3 main.py --target 192.168.1.0/24 --scan_type SYN
 
+If the above commands do not work, you may have to replace python3 with the path
+to your virtual environment's python executable:
+
+.. code-block:: bash
+
+   sudo Network-Analyzer/venv/bin/python3 main.py -t 192.168.0.0/24 --scan_type icmp
+   sudo Network-Analyzer/venv/bin/python3 main.py -t 127.0.0.1/32 -s SYN -p 22
+   sudo Network-Analyzer/venv/bin/python3 main.py --target 192.168.0.0/30 -s ICMP
+   sudo Network-Analyzer/venv/bin/python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 20,21,22
+   sudo Network-Analyzer/venv/bin/python3 main.py --target 192.168.1.0/24 --scan_type SYN
+
 Default ports
 --------------
 
