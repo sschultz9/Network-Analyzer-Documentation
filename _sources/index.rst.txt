@@ -27,6 +27,8 @@ Command-line Flags
 Example usages
 ---------------
 
+Note: The execution of this program can take multiple minutes. For example, a /24 network can take around 15 minutes to completely scan.
+
 .. code-block:: bash
 
    sudo python3 main.py -t 192.168.0.0/24 --scan_type icmp

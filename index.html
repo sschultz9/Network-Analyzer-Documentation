@@ -97,6 +97,7 @@ set of ports will be enumerated.</p>
 </section>
 <section id="example-usages">
 <h2>Example usages<a class="headerlink" href="#example-usages" title="Link to this heading">¶</a></h2>
+<p>Note: The execution of this program can take multiple minutes. For example, a /24 network can take around 15 minutes to completely scan.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w"> </span>-t<span class="w"> </span><span class="m">192</span>.168.0.0/24<span class="w"> </span>--scan_type<span class="w"> </span>icmp
 sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w"> </span>-t<span class="w"> </span><span class="m">127</span>.0.0.1/32<span class="w"> </span>-s<span class="w"> </span>SYN<span class="w"> </span>-p<span class="w"> </span><span class="m">22</span>
 sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w"> </span>--target<span class="w"> </span><span class="m">192</span>.168.0.0/30<span class="w"> </span>-s<span class="w"> </span>ICMP
