@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; Network Analyzer 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Main Module" href="main.html" />
+    <link rel="prev" title="Quickstart Guide" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Network Analyzer
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quickstart:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How to Use:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#command-line-flags">Command-line Flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#default-ports">Default ports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-usage">Example Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#command">Command</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Codebase Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="main.html">Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selfscan.html">SelfScan Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traceroute.html">Traceroute Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scanner.html">Scanner Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Network Analyzer</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h1>
+<section id="command-line-flags">
+<h2>Command-line Flags<a class="headerlink" href="#command-line-flags" title="Link to this heading">¶</a></h2>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-i">
+<span id="cmdoption-target"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--target</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;CIDR&gt;</span></span><a class="headerlink" href="#cmdoption-i" title="Link to this definition">¶</a></dt>
+<dd><p><strong>Required.</strong> Target IP address range in CIDR notation for the network scan
+(e.g., <code class="docutils literal notranslate"><span class="pre">1.1.1.1</span></code> or <code class="docutils literal notranslate"><span class="pre">192.168.1.0/24</span></code>).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-s">
+<span id="cmdoption-scan-type"></span><span id="cmdoption-arg-ICMP"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--scan-type</span></span><span class="sig-prename descclassname"> <span class="pre">{SYN</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">ICMP}</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-s" title="Link to this definition">¶</a></dt>
+<dd><p>The type of network scan to be performed. Defaults to <code class="docutils literal notranslate"><span class="pre">ICMP</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-m">
+<span id="cmdoption-method"></span><span id="cmdoption-arg-0"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--method</span></span><span class="sig-prename descclassname"> <span class="pre">{TCP</span></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">ICMP}</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-m" title="Link to this definition">¶</a></dt>
+<dd><p>The traceroute method to use on each target host. Defaults to <code class="docutils literal notranslate"><span class="pre">ICMP</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-l">
+<span id="cmdoption-max-hops"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--max-hops</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;HOPS&gt;</span></span><a class="headerlink" href="#cmdoption-l" title="Link to this definition">¶</a></dt>
+<dd><p>The maximum number of hops to perform on each traceroute trace.
+Defaults to <code class="docutils literal notranslate"><span class="pre">30</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-p">
+<span id="cmdoption-ports"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ports</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;PORTS&gt;</span></span><a class="headerlink" href="#cmdoption-p" title="Link to this definition">¶</a></dt>
+<dd><p>Comma-separated list of port numbers to enumerate (e.g., <code class="docutils literal notranslate"><span class="pre">20,22,80,443</span></code>).</p>
+<p>This option is only used when the selected scan type is <code class="docutils literal notranslate"><span class="pre">SYN</span></code>. If no ports
+are specified, a default set of ports will be enumerated, which are listed below.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-t">
+<span id="cmdoption-timeout"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--timeout</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;TIMEOUT&gt;</span></span><a class="headerlink" href="#cmdoption-t" title="Link to this definition">¶</a></dt>
+<dd><p>Timeout in seconds for how long to wait to receive a response packet from a
+host. Defaults to <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="default-ports">
+<h2>Default ports<a class="headerlink" href="#default-ports" title="Link to this heading">¶</a></h2>
+<p>The following ports are scanned by default if no port list is provided for a
+SYN scan.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Port</p></th>
+<th class="head"><p>Service</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>FTP</p></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>FTP</p></td>
+</tr>
+<tr class="row-even"><td><p>22</p></td>
+<td><p>SSH</p></td>
+</tr>
+<tr class="row-odd"><td><p>23</p></td>
+<td><p>Telnet</p></td>
+</tr>
+<tr class="row-even"><td><p>25</p></td>
+<td><p>SMTP</p></td>
+</tr>
+<tr class="row-odd"><td><p>53</p></td>
+<td><p>DNS</p></td>
+</tr>
+<tr class="row-even"><td><p>88</p></td>
+<td><p>Kerberos</p></td>
+</tr>
+<tr class="row-odd"><td><p>80</p></td>
+<td><p>HTTP</p></td>
+</tr>
+<tr class="row-even"><td><p>8080</p></td>
+<td><p>HTTP</p></td>
+</tr>
+<tr class="row-odd"><td><p>443</p></td>
+<td><p>HTTPS</p></td>
+</tr>
+<tr class="row-even"><td><p>110</p></td>
+<td><p>POP3</p></td>
+</tr>
+<tr class="row-odd"><td><p>995</p></td>
+<td><p>POP3S</p></td>
+</tr>
+<tr class="row-even"><td><p>135</p></td>
+<td><p>RPC</p></td>
+</tr>
+<tr class="row-odd"><td><p>445</p></td>
+<td><p>SMB</p></td>
+</tr>
+<tr class="row-even"><td><p>143</p></td>
+<td><p>IMAP</p></td>
+</tr>
+<tr class="row-odd"><td><p>993</p></td>
+<td><p>IMAPS</p></td>
+</tr>
+<tr class="row-even"><td><p>389</p></td>
+<td><p>LDAP</p></td>
+</tr>
+<tr class="row-odd"><td><p>3306</p></td>
+<td><p>MySQL</p></td>
+</tr>
+<tr class="row-even"><td><p>3389</p></td>
+<td><p>RDP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h2>
+<section id="command">
+<h3>Command<a class="headerlink" href="#command" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-l<span class="w"> </span><span class="m">20</span><span class="w"> </span>-t<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the above command does not work, you may have to replace python3 with the
+path to your virtual environment’s python executable as shown below.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>Network-Analyzer/venv/bin/python3<span class="w"> </span>main.py<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-l<span class="w"> </span><span class="m">20</span><span class="w"> </span>-t<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The selfscan portion of this program will be skipped if you are using
+an operating system that does not have the <code class="docutils literal notranslate"><span class="pre">/proc</span></code> directory.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">========[</span>STARTING<span class="w"> </span>NETWORK<span class="w"> </span>SELF<span class="w"> </span>SCAN<span class="o">]========</span>
+Inode:<span class="w"> </span><span class="m">39928</span>
+PID:<span class="w"> </span><span class="m">13493</span>
+Comm:<span class="w"> </span>python3
+Proto:<span class="w"> </span>TCP
+Local:<span class="w"> </span><span class="m">0</span>.0.0.0:8000
+Remote:<span class="w"> </span><span class="m">0</span>.0.0.0:*
+State:<span class="w"> </span>LISTEN
+Cmdline:<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="nv">8000</span>
+
+
+<span class="o">========[</span>STARTING<span class="w"> </span>ICMP<span class="w"> </span>NETWORK<span class="w"> </span>SCAN<span class="o">]========</span>
+Host:<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w">   </span>State:<span class="w"> </span>Up
+ICMP<span class="w"> </span>scan<span class="w"> </span>complete:<span class="w"> </span><span class="m">1</span><span class="w"> </span>IP<span class="w"> </span>addresses<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>hosts<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.11<span class="w"> </span><span class="nv">seconds</span>
+
+<span class="o">===========[</span>STARTING<span class="w"> </span>ICMP<span class="w"> </span>TRACEROUTE<span class="o">]===========</span>
+
+traceroute<span class="w"> </span>to<span class="w"> </span><span class="m">1</span>.1.1.1,<span class="w"> </span><span class="m">20</span><span class="w"> </span>hops<span class="w"> </span>max
+--------------------------------------------------
+<span class="m">1</span><span class="w"> </span>-<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>-<span class="w"> </span><span class="m">43</span>.75ms<span class="w">  </span><span class="m">51</span>.13ms<span class="w">  </span><span class="m">47</span>.65ms
+
+<span class="m">2</span><span class="w"> </span>-<span class="w"> </span><span class="m">10</span>.61.241.195<span class="w"> </span>-<span class="w"> </span><span class="m">47</span>.94ms<span class="w">  </span><span class="m">59</span>.87ms<span class="w">  </span><span class="m">55</span>.16ms
+
+<span class="m">3</span><span class="w"> </span>-<span class="w"> </span><span class="m">24</span>.153.86.165<span class="w"> </span>-<span class="w"> </span><span class="m">83</span>.44ms<span class="w">  </span><span class="m">63</span>.39ms<span class="w">  </span><span class="m">63</span>.24ms
+
+<span class="m">4</span><span class="w"> </span>-<span class="w"> </span><span class="m">24</span>.124.128.209<span class="w"> </span>-<span class="w"> </span><span class="m">59</span>.26ms<span class="w">  </span><span class="m">63</span>.39ms<span class="w">  </span><span class="m">59</span>.27ms
+
+<span class="m">5</span><span class="w"> </span>-<span class="w"> </span><span class="m">68</span>.86.96.5<span class="w"> </span>-<span class="w"> </span><span class="m">79</span>.75ms<span class="w">  </span><span class="m">79</span>.67ms<span class="w">  </span><span class="m">71</span>.66ms
+
+<span class="m">6</span><span class="w"> </span>-<span class="w"> </span><span class="m">24</span>.124.128.121<span class="w"> </span>-<span class="w"> </span><span class="m">79</span>.16ms<span class="w">  </span><span class="m">91</span>.57ms<span class="w">  </span><span class="m">87</span>.55ms
+
+<span class="m">7</span><span class="w"> </span>-<span class="w"> </span><span class="m">68</span>.86.93.5<span class="w"> </span>-<span class="w"> </span><span class="m">83</span>.3ms<span class="w">  </span>*<span class="w">  </span>*
+
+<span class="m">8</span><span class="w"> </span>-<span class="w"> </span><span class="m">96</span>.110.44.86<span class="w"> </span>-<span class="w"> </span><span class="m">74</span>.95ms<span class="w">  </span><span class="m">71</span>.37ms<span class="w">  </span><span class="m">78</span>.99ms
+
+<span class="m">9</span><span class="w"> </span>-<span class="w"> </span>*<span class="w">  </span>*<span class="w">  </span>*<span class="w">  </span><span class="o">(</span>No<span class="w"> </span>Response<span class="o">)</span>
+
+<span class="m">10</span><span class="w"> </span>-<span class="w"> </span><span class="m">108</span>.162.243.19<span class="w"> </span>-<span class="w"> </span><span class="m">87</span>.16ms<span class="w">  </span><span class="m">75</span>.33ms<span class="w">  </span><span class="m">75</span>.65ms
+
+<span class="m">11</span><span class="w"> </span>-<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-<span class="w"> </span><span class="m">75</span>.46ms<span class="w">  </span><span class="m">75</span>.19ms<span class="w">  </span><span class="m">75</span>.36ms<span class="w">  </span><span class="o">(</span>Destination<span class="w"> </span>Reached<span class="o">)</span>
+
+--------------------------------------------------
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="main.html" class="btn btn-neutral float-right" title="Main Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Saxton Schultz and Isaiah Hymes.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

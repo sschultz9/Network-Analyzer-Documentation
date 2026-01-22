@@ -1,0 +1,155 @@
+Usage
+=====
+
+Command-line Flags
+-------------------
+
+.. option:: -i, --target <CIDR>
+
+   **Required.** Target IP address range in CIDR notation for the network scan
+   (e.g., ``1.1.1.1`` or ``192.168.1.0/24``).
+
+.. option:: -s, --scan-type {SYN, ICMP}
+
+   The type of network scan to be performed. Defaults to ``ICMP``.
+
+.. option:: -m, --method {TCP, ICMP}
+
+   The traceroute method to use on each target host. Defaults to ``ICMP``.
+
+.. option:: -l, --max-hops <HOPS>
+
+   The maximum number of hops to perform on each traceroute trace. 
+   Defaults to ``30``.
+
+.. option:: -p, --ports <PORTS>
+
+   Comma-separated list of port numbers to enumerate (e.g., ``20,22,80,443``). 
+   
+   This option is only used when the selected scan type is ``SYN``. If no ports
+   are specified, a default set of ports will be enumerated, which are listed below.
+
+.. option:: -t, --timeout <TIMEOUT>
+
+   Timeout in seconds for how long to wait to receive a response packet from a
+   host. Defaults to ``2``.
+
+Default ports
+--------------
+
+The following ports are scanned by default if no port list is provided for a 
+SYN scan.
+
++------+----------+
+| Port | Service  |
++======+==========+
+| 20   | FTP      |
++------+----------+
+| 21   | FTP      |
++------+----------+
+| 22   | SSH      |
++------+----------+
+| 23   | Telnet   |
++------+----------+
+| 25   | SMTP     |
++------+----------+
+| 53   | DNS      |
++------+----------+
+| 88   | Kerberos |
++------+----------+
+| 80   | HTTP     |
++------+----------+
+| 8080 | HTTP     |
++------+----------+
+| 443  | HTTPS    |
++------+----------+
+| 110  | POP3     |
++------+----------+
+| 995  | POP3S    |
++------+----------+
+| 135  | RPC      |
++------+----------+
+| 445  | SMB      |
++------+----------+
+| 143  | IMAP     |
++------+----------+
+| 993  | IMAPS    |
++------+----------+
+| 389  | LDAP     |
++------+----------+
+| 3306 | MySQL    |
++------+----------+
+| 3389 | RDP      |
++------+----------+
+
+Example Usage
+-------------
+
+Command
+~~~~~~~
+
+.. code-block:: bash
+
+    sudo python3 main.py -i 1.1.1.1 -l 20 -t 1
+
+.. note::
+
+   If the above command does not work, you may have to replace python3 with the 
+   path to your virtual environment's python executable as shown below.
+
+.. code-block:: bash
+
+    sudo Network-Analyzer/venv/bin/python3 main.py -i 1.1.1.1 -l 20 -t 1
+
+Output
+~~~~~~
+
+.. note::
+
+   The selfscan portion of this program will be skipped if you are using
+   an operating system that does not have the ``/proc`` directory.
+
+.. code-block:: bash
+
+    ========[STARTING NETWORK SELF SCAN]========
+    Inode: 39928
+    PID: 13493
+    Comm: python3
+    Proto: TCP
+    Local: 0.0.0.0:8000
+    Remote: 0.0.0.0:*
+    State: LISTEN
+    Cmdline: python3 -m http.server 8000
+
+
+    ========[STARTING ICMP NETWORK SCAN]========
+    Host: 1.1.1.1   State: Up
+    ICMP scan complete: 1 IP addresses (1 hosts up) scanned in 0.11 seconds
+
+    ===========[STARTING ICMP TRACEROUTE]===========
+
+    traceroute to 1.1.1.1, 20 hops max
+    --------------------------------------------------
+    1 - 192.168.1.1 - 43.75ms  51.13ms  47.65ms
+
+    2 - 10.61.241.195 - 47.94ms  59.87ms  55.16ms
+
+    3 - 24.153.86.165 - 83.44ms  63.39ms  63.24ms
+
+    4 - 24.124.128.209 - 59.26ms  63.39ms  59.27ms
+
+    5 - 68.86.96.5 - 79.75ms  79.67ms  71.66ms
+
+    6 - 24.124.128.121 - 79.16ms  91.57ms  87.55ms
+
+    7 - 68.86.93.5 - 83.3ms  *  *
+
+    8 - 96.110.44.86 - 74.95ms  71.37ms  78.99ms
+
+    9 - *  *  *  (No Response)
+
+    10 - 108.162.243.19 - 87.16ms  75.33ms  75.65ms
+
+    11 - 1.1.1.1 - 75.46ms  75.19ms  75.36ms  (Destination Reached)
+
+    --------------------------------------------------

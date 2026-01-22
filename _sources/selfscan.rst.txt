@@ -1,0 +1,8 @@
+Selfscan Module
+===============
+
+.. automodule:: selfscan
+   :members:
+   :undoc-members:
+   :private-members:
+   :show-inheritance:

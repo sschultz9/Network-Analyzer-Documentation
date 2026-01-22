@@ -1,67 +1,70 @@
 Quickstart Guide
 ================
 
-1. Clone the repository
+Clone the repository
 ------------------------
 
 The first step is to clone the repository
 
-.. code:: bash
+.. code-block:: bash
 
    git clone https://github.com/sschultz9/Network-Analyzer.git
 
-2. Setup a virtual environment
+Setup a virtual environment
 ------------------------------
 
-This program was built in Python 3.13.5 and expects the user to install
-Python 3.13.5 to ensure compatibility. To build the environment, you
-must also have the python virtual environment module installed. Once you have 
-the venv module installed, run the commands listed below in your terminal:
+.. note::
+   
+   This program was built in Python 3.13.5 and expects the user to install
+   Python 3.13.5 to ensure compatibility. To build the environment, you
+   must also have the python virtual environment module installed. Once you have 
+   the venv module installed, run the commands listed below in your terminal.
 
 1. Change directories to the root of the repository
 
-.. code:: bash
+.. code-block:: bash
 
    cd Network-Analyzer
 
 2. Create a new python virtual environment to run the program in
 
-.. code:: bash
+.. code-block:: bash
 
    python3 -m venv venv
 
 3. Activate the newly created virtual environment
 
-.. code:: bash
+.. code-block:: bash
 
    source venv/bin/activate
 
 4. Install the required packages
 
-.. code:: bash
+.. code-block:: bash
 
    pip install -r requirements.txt
 
-3. Execute the program
+Execute the program
 ----------------------
 
 1. Change directories to the src folder that contains main.py
 
-.. code:: bash
+.. code-block:: bash
 
    cd src
 
 2. This is one example of how you could execute the program. Refer to this
-   website's home page for further information pertaining to various 
+   website's Usage page for further information pertaining to various 
    command-line flags that can be utilized
 
-.. code:: bash
+.. code-block:: bash
 
-   sudo python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 22,80,443
+   sudo python3 main.py -i 1.1.1.1 -l 20 -t 1
 
-If the above command does not work, you may have to replace python3 with the path
-to your virtual environment's python executable:
+.. note::
+   If the above command does not work, you may have to replace python3 with the
+   path to your virtual environment's python executable:
 
-.. code:: bash
+.. code-block:: bash
 
-   sudo ../venv/bin/python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 22,80,443
+   sudo ../venv/bin/python3 main.py -i 1.1.1.1 -l 20 -t 1

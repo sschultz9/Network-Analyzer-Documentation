@@ -17,8 +17,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Scanner Module" href="scanner.html" />
-    <link rel="prev" title="Quickstart Guide" href="quickstart.html" /> 
+    <link rel="next" title="Selfscan Module" href="selfscan.html" />
+    <link rel="prev" title="Usage" href="usage.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,16 +40,24 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+              <p class="caption" role="heading"><span class="caption-text">Quickstart:</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How to Use:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Codebase Documentation:</span></p>
+<ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Main Module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#main.verify_cidr"><code class="docutils literal notranslate"><span class="pre">verify_cidr()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main.verify_ip"><code class="docutils literal notranslate"><span class="pre">verify_ip()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#main.verify_ports"><code class="docutils literal notranslate"><span class="pre">verify_ports()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#main.verify_scan_type"><code class="docutils literal notranslate"><span class="pre">verify_scan_type()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="selfscan.html">Selfscan Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traceroute.html">Traceroute Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scanner.html">Scanner Module</a></li>
 </ul>
 
@@ -79,25 +87,25 @@
              
   <section id="module-main">
 <span id="main-module"></span><h1>Main Module<a class="headerlink" href="#module-main" title="Link to this heading">¶</a></h1>
-<p>Main module for parsing user input and executing a network scan.</p>
-<p>This module will read command line input from the user, and perform a network
-scan based on the user’s specified configuration.</p>
+<p>Main module for parsing user input and performing network analysis.</p>
+<p>This module will read command line input from the user, and subsequently
+perform the user specified network analysis.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="main.main">
 <span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.main" title="Link to this definition">¶</a></dt>
-<dd><p>Collects network scanning variables from user input with argparse.</p>
+<dd><p>Collects network analysis variables from user input using argparse.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="main.verify_cidr">
-<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">verify_cidr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#main.verify_cidr" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="main.verify_ip">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">verify_ip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#main.verify_ip" title="Link to this definition">¶</a></dt>
 <dd><p>Verifies the passed in target IP address is a valid CIDR IP address.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – IP address in CIDR notation.</p>
+<dd class="field-odd"><p><strong>ip</strong> (<em>str</em>) – The IP address to be checked.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the target IP address is invalid or not in CIDR notation.</p>
+<dd class="field-even"><p><strong>ArgumentTypeError</strong> – If the passed in IP address is invalid or not in CIDR notation.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -105,7 +113,7 @@ scan based on the user’s specified configuration.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="main.verify_ports">
 <span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">verify_ports</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ports</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#main.verify_ports" title="Link to this definition">¶</a></dt>
-<dd><p>Verifies that the user entered valid port values.</p>
+<dd><p>Verifies that the user provided a valid string of port values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ports</strong> (<em>str</em>) – A comma-separated list of port values.</p>
@@ -117,28 +125,8 @@ scan based on the user’s specified configuration.</p>
 <dd class="field-odd"><p>tuple[int, …]</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If any of the port values are not integers or are not in the range
-    of 0-65535.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="main.verify_scan_type">
-<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">verify_scan_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scan_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="scanner.html#scanner.ScanType" title="scanner.ScanType"><span class="pre">ScanType</span></a></span></span><a class="headerlink" href="#main.verify_scan_type" title="Link to this definition">¶</a></dt>
-<dd><p>Verifies that the user entered a valid network scan type.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>scan_type</strong> (<em>str</em>) – The network scan type to be checked.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Enum representing the user’s chosen network scan type.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="scanner.html#scanner.ScanType" title="scanner.ScanType">ScanType</a></p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If the user specified network scan type is unrecognized.</p>
+<dd class="field-even"><p><strong>ArgumentTypeError</strong> – If any of the argument port values are not integers or are not in
+    the range of 0-65535 (The range of valid port numbers).</p>
 </dd>
 </dl>
 </dd></dl>
@@ -149,8 +137,8 @@ scan based on the user’s specified configuration.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="scanner.html" class="btn btn-neutral float-right" title="Scanner Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="selfscan.html" class="btn btn-neutral float-right" title="Selfscan Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

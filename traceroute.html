@@ -1,0 +1,193 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traceroute Module &mdash; Network Analyzer 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Scanner Module" href="scanner.html" />
+    <link rel="prev" title="Selfscan Module" href="selfscan.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Network Analyzer
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quickstart:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How to Use:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Codebase Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selfscan.html">Selfscan Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Traceroute Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#traceroute.TraceType"><code class="docutils literal notranslate"><span class="pre">TraceType</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#traceroute.TraceType.ICMP"><code class="docutils literal notranslate"><span class="pre">TraceType.ICMP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#traceroute.TraceType.TCP"><code class="docutils literal notranslate"><span class="pre">TraceType.TCP</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#traceroute._print_hop_info"><code class="docutils literal notranslate"><span class="pre">_print_hop_info()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#traceroute.trace"><code class="docutils literal notranslate"><span class="pre">trace()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scanner.html">Scanner Module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Network Analyzer</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Traceroute Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/traceroute.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-traceroute">
+<span id="traceroute-module"></span><h1>Traceroute Module<a class="headerlink" href="#module-traceroute" title="Link to this heading">¶</a></h1>
+<p>Module containing traceroute functionality.</p>
+<p>The trace function can perform either a TCP or ICMP traceroute to a list of
+user specified target hosts. The TCP traceroute works by sending a TCP SYN
+packet to each hop, until either a SYN/ACK or RST packet is received from the
+destination host. A SYN/ACK response indicates that the destination host’s
+target port is open, and a RST response means the destination host’s target
+port is closed. The ICMP traceroute works by sending ICMP Echo Request packets
+to each hop until an ICMP Echo Reply packet is received from the destination
+host. At each hop, the IP address of the hop and the time it took to reply to
+each of the three probe packets is printed to the screen.</p>
+<dl class="simple">
+<dt>Typical usage example:</dt><dd><p>trace((“1.1.1.1”, “8.8.8.8”), TraceType.TCP, 30, 0.5)</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="traceroute.TraceType">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">TraceType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#traceroute.TraceType" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Enum representing the possible traceroute types.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="traceroute.TraceType.ICMP">
+<span class="sig-name descname"><span class="pre">ICMP</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ICMP'</span></span><a class="headerlink" href="#traceroute.TraceType.ICMP" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="traceroute.TraceType.TCP">
+<span class="sig-name descname"><span class="pre">TCP</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'TCP'</span></span><a class="headerlink" href="#traceroute.TraceType.TCP" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="traceroute._print_hop_info">
+<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">_print_hop_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hop_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute._print_hop_info" title="Link to this definition">¶</a></dt>
+<dd><p>Helper method that prints out information pertaining to the current hop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hop_num</strong> (<em>int</em>) – The number of the current host on the path to the destination host.</p></li>
+<li><p><strong>ip</strong> (<em>str</em>) – The IP address of the current host.</p></li>
+<li><p><strong>response_times</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of how long it took the host to respond to each of the three
+probe packets that were sent.</p></li>
+<li><p><strong>destination</strong> (<em>bool</em>) – Boolean representing whether the current host is the destination
+host or not.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="traceroute.trace">
+<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#traceroute.TraceType" title="traceroute.TraceType"><span class="pre">TraceType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_hops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute.trace" title="Link to this definition">¶</a></dt>
+<dd><p>Prints out a trace of the route taken to each target host.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_range</strong> (<em>tuple</em><em>[</em><em>str</em><em>, </em><em>...</em><em>]</em>) – A tuple of target IP addresses to trace.</p></li>
+<li><p><strong>trace_type</strong> (<a class="reference internal" href="#traceroute.TraceType" title="traceroute.TraceType"><em>TraceType</em></a>) – The type of trace to perform.</p></li>
+<li><p><strong>max_hops</strong> (<em>int</em>) – The number of hops to trace before ending the program.</p></li>
+<li><p><strong>timeout</strong> (<em>float</em>) – Timeout in seconds for how long to wait to receive a response
+packet from a host.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="selfscan.html" class="btn btn-neutral float-left" title="Selfscan Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scanner.html" class="btn btn-neutral float-right" title="Scanner Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Saxton Schultz and Isaiah Hymes.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

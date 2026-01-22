@@ -37,10 +37,19 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Quickstart:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How to Use:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Codebase Documentation:</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="main.html">Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selfscan.html">Selfscan Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traceroute.html">Traceroute Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scanner.html">Scanner Module</a></li>
 </ul>
 
@@ -85,47 +94,89 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
-    --ports
+    --max-hops
 
       <ul>
-        <li><a href="index.html#cmdoption-p">command line option</a>
+        <li><a href="usage.html#cmdoption-l">command line option</a>
 </li>
       </ul></li>
       <li>
-    --scan_type
+    --method
 
       <ul>
-        <li><a href="index.html#cmdoption-s">command line option</a>
+        <li><a href="usage.html#cmdoption-m">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --ports
+
+      <ul>
+        <li><a href="usage.html#cmdoption-p">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --scan-type
+
+      <ul>
+        <li><a href="usage.html#cmdoption-s">command line option</a>
 </li>
       </ul></li>
       <li>
     --target
 
       <ul>
-        <li><a href="index.html#cmdoption-t">command line option</a>
+        <li><a href="usage.html#cmdoption-i">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --timeout
+
+      <ul>
+        <li><a href="usage.html#cmdoption-t">command line option</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    -i
+
+      <ul>
+        <li><a href="usage.html#cmdoption-i">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -l
+
+      <ul>
+        <li><a href="usage.html#cmdoption-l">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -m
+
+      <ul>
+        <li><a href="usage.html#cmdoption-m">command line option</a>
+</li>
+      </ul></li>
+      <li>
     -p
 
       <ul>
-        <li><a href="index.html#cmdoption-p">command line option</a>
+        <li><a href="usage.html#cmdoption-p">command line option</a>
 </li>
       </ul></li>
       <li>
     -s
 
       <ul>
-        <li><a href="index.html#cmdoption-s">command line option</a>
+        <li><a href="usage.html#cmdoption-s">command line option</a>
 </li>
       </ul></li>
       <li>
     -t
 
       <ul>
-        <li><a href="index.html#cmdoption-t">command line option</a>
+        <li><a href="usage.html#cmdoption-t">command line option</a>
 </li>
       </ul></li>
   </ul></td>
@@ -134,11 +185,21 @@
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scanner.html#scanner.Scanner._icmp_scan">_icmp_scan() (scanner.Scanner method)</a>
+      <li><a href="selfscan.html#selfscan._enumerate_pids">_enumerate_pids() (in module selfscan)</a>
+</li>
+      <li><a href="selfscan.html#selfscan._get_proc_net">_get_proc_net() (in module selfscan)</a>
+</li>
+      <li><a href="selfscan.html#selfscan._hex_conversion">_hex_conversion() (in module selfscan)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scanner.html#scanner.Scanner._syn_scan">_syn_scan() (scanner.Scanner method)</a>
+      <li><a href="scanner.html#scanner._icmp_scan">_icmp_scan() (in module scanner)</a>
+</li>
+      <li><a href="selfscan.html#selfscan._list_inodes">_list_inodes() (in module selfscan)</a>
+</li>
+      <li><a href="traceroute.html#traceroute._print_hop_info">_print_hop_info() (in module traceroute)</a>
+</li>
+      <li><a href="scanner.html#scanner._syn_scan">_syn_scan() (in module scanner)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -150,17 +211,31 @@
     command line option
 
       <ul>
-        <li><a href="index.html#cmdoption-p">--ports</a>
+        <li><a href="usage.html#cmdoption-l">--max-hops</a>
 </li>
-        <li><a href="index.html#cmdoption-s">--scan_type</a>
+        <li><a href="usage.html#cmdoption-m">--method</a>
 </li>
-        <li><a href="index.html#cmdoption-t">--target</a>
+        <li><a href="usage.html#cmdoption-p">--ports</a>
 </li>
-        <li><a href="index.html#cmdoption-p">-p</a>
+        <li><a href="usage.html#cmdoption-s">--scan-type</a>
 </li>
-        <li><a href="index.html#cmdoption-s">-s</a>
+        <li><a href="usage.html#cmdoption-i">--target</a>
 </li>
-        <li><a href="index.html#cmdoption-t">-t</a>
+        <li><a href="usage.html#cmdoption-t">--timeout</a>
+</li>
+        <li><a href="usage.html#cmdoption-i">-i</a>
+</li>
+        <li><a href="usage.html#cmdoption-l">-l</a>
+</li>
+        <li><a href="usage.html#cmdoption-m">-m</a>
+</li>
+        <li><a href="usage.html#cmdoption-p">-p</a>
+</li>
+        <li><a href="usage.html#cmdoption-s">-s</a>
+</li>
+        <li><a href="usage.html#cmdoption-t">-t</a>
+</li>
+        <li><a href="usage.html#cmdoption-m">ICMP}</a>, <a href="usage.html#cmdoption-s">[1]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -170,7 +245,20 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="scanner.html#scanner.ScanType.ICMP">ICMP (scanner.ScanType attribute)</a>
+
+      <ul>
+        <li><a href="traceroute.html#traceroute.TraceType.ICMP">(traceroute.TraceType attribute)</a>
 </li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    ICMP}
+
+      <ul>
+        <li><a href="usage.html#cmdoption-m">command line option</a>, <a href="usage.html#cmdoption-s">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -186,8 +274,6 @@
       </ul></li>
       <li><a href="main.html#main.main">main() (in module main)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     module
 
@@ -196,6 +282,10 @@
 </li>
         <li><a href="scanner.html#module-scanner">scanner</a>
 </li>
+        <li><a href="selfscan.html#module-selfscan">selfscan</a>
+</li>
+        <li><a href="traceroute.html#module-traceroute">traceroute</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -203,7 +293,9 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scanner.html#scanner.Scanner.scan">scan() (scanner.Scanner method)</a>
+      <li><a href="scanner.html#scanner.scan">scan() (in module scanner)</a>
+</li>
+      <li><a href="selfscan.html#selfscan.scan_local_device">scan_local_device() (in module selfscan)</a>
 </li>
       <li>
     scanner
@@ -214,10 +306,15 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scanner.html#scanner.Scanner">Scanner (class in scanner)</a>
-</li>
       <li><a href="scanner.html#scanner.ScanType">ScanType (class in scanner)</a>
 </li>
+      <li>
+    selfscan
+
+      <ul>
+        <li><a href="selfscan.html#module-selfscan">module</a>
+</li>
+      </ul></li>
       <li><a href="scanner.html#scanner.ScanType.SYN">SYN (scanner.ScanType attribute)</a>
 </li>
   </ul></td>
@@ -226,7 +323,20 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scanner.html#scanner.Scanner.timeout">timeout (scanner.Scanner attribute)</a>
+      <li><a href="traceroute.html#traceroute.TraceType.TCP">TCP (traceroute.TraceType attribute)</a>
+</li>
+      <li><a href="traceroute.html#traceroute.trace">trace() (in module traceroute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    traceroute
+
+      <ul>
+        <li><a href="traceroute.html#module-traceroute">module</a>
+</li>
+      </ul></li>
+      <li><a href="traceroute.html#traceroute.TraceType">TraceType (class in traceroute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -234,13 +344,11 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="main.html#main.verify_cidr">verify_cidr() (in module main)</a>
+      <li><a href="main.html#main.verify_ip">verify_ip() (in module main)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="main.html#main.verify_ports">verify_ports() (in module main)</a>
-</li>
-      <li><a href="main.html#main.verify_scan_type">verify_scan_type() (in module main)</a>
 </li>
   </ul></td>
 </tr></table>

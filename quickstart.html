@@ -17,8 +17,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Main Module" href="main.html" />
-    <link rel="prev" title="Network Analyzer documentation" href="index.html" /> 
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="Network Analyzer Documentation" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,15 +40,24 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Quickstart:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#clone-the-repository">1. Clone the repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-a-virtual-environment">2. Setup a virtual environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#execute-the-program">3. Execute the program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clone-the-repository">Clone the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-a-virtual-environment">Setup a virtual environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#execute-the-program">Execute the program</a></li>
 </ul>
 </li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How to Use:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Codebase Documentation:</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="main.html">Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selfscan.html">SelfScan Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traceroute.html">Traceroute Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scanner.html">Scanner Module</a></li>
 </ul>
 
@@ -79,18 +88,21 @@
   <section id="quickstart-guide">
 <h1>Quickstart Guide<a class="headerlink" href="#quickstart-guide" title="Link to this heading">¶</a></h1>
 <section id="clone-the-repository">
-<h2>1. Clone the repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading">¶</a></h2>
+<h2>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading">¶</a></h2>
 <p>The first step is to clone the repository</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sschultz9/Network-Analyzer.git
 </pre></div>
 </div>
 </section>
 <section id="setup-a-virtual-environment">
-<h2>2. Setup a virtual environment<a class="headerlink" href="#setup-a-virtual-environment" title="Link to this heading">¶</a></h2>
+<h2>Setup a virtual environment<a class="headerlink" href="#setup-a-virtual-environment" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>This program was built in Python 3.13.5 and expects the user to install
 Python 3.13.5 to ensure compatibility. To build the environment, you
 must also have the python virtual environment module installed. Once you have
-the venv module installed, run the commands listed below in your terminal:</p>
+the venv module installed, run the commands listed below in your terminal.</p>
+</div>
 <ol class="arabic simple">
 <li><p>Change directories to the root of the repository</p></li>
 </ol>
@@ -117,7 +129,7 @@ the venv module installed, run the commands listed below in your terminal:</p>
 </div>
 </section>
 <section id="execute-the-program">
-<h2>3. Execute the program<a class="headerlink" href="#execute-the-program" title="Link to this heading">¶</a></h2>
+<h2>Execute the program<a class="headerlink" href="#execute-the-program" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Change directories to the src folder that contains main.py</p></li>
 </ol>
@@ -126,15 +138,18 @@ the venv module installed, run the commands listed below in your terminal:</p>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>This is one example of how you could execute the program. Refer to this
-website’s home page for further information pertaining to various
+website’s Usage page for further information pertaining to various
 command-line flags that can be utilized</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w"> </span>--target<span class="w"> </span><span class="m">192</span>.168.1.0/24<span class="w"> </span>--scan_type<span class="w"> </span>SYN<span class="w"> </span>--ports<span class="w"> </span><span class="m">22</span>,80,443
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-l<span class="w"> </span><span class="m">20</span><span class="w"> </span>-t<span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
-<p>If the above command does not work, you may have to replace python3 with the path
-to your virtual environment’s python executable:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>../venv/bin/python3<span class="w"> </span>main.py<span class="w"> </span>--target<span class="w"> </span><span class="m">192</span>.168.1.0/24<span class="w"> </span>--scan_type<span class="w"> </span>SYN<span class="w"> </span>--ports<span class="w"> </span><span class="m">22</span>,80,443
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the above command does not work, you may have to replace python3 with the
+path to your virtual environment’s python executable:</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>../venv/bin/python3<span class="w"> </span>main.py<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-l<span class="w"> </span><span class="m">20</span><span class="w"> </span>-t<span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
 </section>
@@ -144,8 +159,8 @@ to your virtual environment’s python executable:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Network Analyzer documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="main.html" class="btn btn-neutral float-right" title="Main Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Network Analyzer Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

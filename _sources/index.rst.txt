@@ -3,103 +3,26 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Network Analyzer documentation
+Network Analyzer Documentation
 ==============================
-
-
-Command-line Flags
--------------------
-
-.. option:: -t, --target <CIDR>
-
-   Target IP address range in CIDR notation for the network scan.
-
-.. option:: -s, --scan_type {SYN,ICMP}
-
-   The type of network scan to be performed.
-
-.. option:: -p, --ports <ports>
-
-   Comma-separated list of port numbers to enumerate. This is only allowed if
-   the selected scan type is a SYN scan. If no ports are specified, a default 
-   set of ports will be enumerated.
-
-Example usages
----------------
-
-Note: The execution of this program can take multiple minutes. For example, a /24 network can take around 15 minutes to completely scan.
-
-.. code-block:: bash
-
-   sudo python3 main.py -t 192.168.0.0/24 --scan_type icmp
-   sudo python3 main.py -t 127.0.0.1/32 -s SYN -p 22
-   sudo python3 main.py --target 192.168.0.0/30 -s ICMP
-   sudo python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 20,21,22
-   sudo python3 main.py --target 192.168.1.0/24 --scan_type SYN
-
-If the above commands do not work, you may have to replace python3 with the path
-to your virtual environment's python executable:
-
-.. code-block:: bash
-
-   sudo Network-Analyzer/venv/bin/python3 main.py -t 192.168.0.0/24 --scan_type icmp
-   sudo Network-Analyzer/venv/bin/python3 main.py -t 127.0.0.1/32 -s SYN -p 22
-   sudo Network-Analyzer/venv/bin/python3 main.py --target 192.168.0.0/30 -s ICMP
-   sudo Network-Analyzer/venv/bin/python3 main.py --target 192.168.1.0/24 --scan_type SYN --ports 20,21,22
-   sudo Network-Analyzer/venv/bin/python3 main.py --target 192.168.1.0/24 --scan_type SYN
-
-Default ports
---------------
-
-The following ports are scanned by default if no port list is provided for a 
-SYN scan.
-
-+------+----------+
-| Port | Service  |
-+======+==========+
-| 20   | FTP      |
-+------+----------+
-| 21   | FTP      |
-+------+----------+
-| 22   | SSH      |
-+------+----------+
-| 23   | Telnet   |
-+------+----------+
-| 25   | SMTP     |
-+------+----------+
-| 53   | DNS      |
-+------+----------+
-| 88   | Kerberos |
-+------+----------+
-| 80   | HTTP     |
-+------+----------+
-| 8080 | HTTP     |
-+------+----------+
-| 443  | HTTPS    |
-+------+----------+
-| 110  | POP3     |
-+------+----------+
-| 995  | POP3S    |
-+------+----------+
-| 135  | RPC      |
-+------+----------+
-| 445  | SMB      |
-+------+----------+
-| 143  | IMAP     |
-+------+----------+
-| 993  | IMAPS    |
-+------+----------+
-| 389  | LDAP     |
-+------+----------+
-| 3306 | MySQL    |
-+------+----------+
-| 3389 | RDP      |
-+------+----------+
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Quickstart:
 
    quickstart
+
+.. toctree::
+   :maxdepth: 2
+   :caption: How to Use:
+
+   usage
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Codebase Documentation:
+
    main
+   selfscan
+   traceroute
    scanner
