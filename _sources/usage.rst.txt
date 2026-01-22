@@ -85,6 +85,10 @@ SYN scan.
 Example Usage
 -------------
 
+.. note::
+
+   This program must be run with root privileges using ``sudo``.
+
 Command
 ~~~~~~~
 
