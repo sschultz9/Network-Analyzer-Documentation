@@ -59,12 +59,19 @@ Execute the program
 
 .. code-block:: bash
 
-   sudo python3 main.py -i 1.1.1.1 -l 20 -t 1
+   sudo python3 main.py -i 192.168.1.0/24 -s SYN -m TCP -l 20 -t 1
 
 .. note::
+
    If the above command does not work, you may have to replace python3 with the
    path to your virtual environment's python executable:
 
 .. code-block:: bash
 
-   sudo ../venv/bin/python3 main.py -i 1.1.1.1 -l 20 -t 1
+   sudo ../venv/bin/python3 main.py -i 192.168.1.0/24 -s SYN -m TCP -l 20 -t 1
+
+The above command will do the following:
+
+- Find the listening connections on the local machine, similar to netstat
+- Perform a SYN port scan on each host in the specified network which is given in CIDR notation
+- Perform a TCP traceroute to each host in the network with a maximum of 20 hops and timeout of 1 second
