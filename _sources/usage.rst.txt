@@ -4,10 +4,10 @@ Usage
 Command-line Flags
 -------------------
 
-.. option:: -i, --target <CIDR>
+.. option:: -i, --ip <CIDR>
 
-   **Required.** Target IP address range in CIDR notation for the network scan
-   (e.g., ``1.1.1.1`` or ``192.168.1.0/24``).
+   **Required.** Target IP address or target network in CIDR notation for the 
+   network scan (e.g., ``1.1.1.1`` or ``192.168.1.0/24``).
 
 .. option:: -s, --scan-type {SYN, ICMP}
 
