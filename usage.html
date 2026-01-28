@@ -52,6 +52,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#example-usage">Example Usage</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#command">Command</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#output">Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generated-traceroute-visualization">Generated Traceroute Visualization</a></li>
 </ul>
 </li>
 </ul>
@@ -97,7 +98,8 @@
 <dt class="sig sig-object std" id="cmdoption-i">
 <span id="cmdoption-ip"></span><span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ip</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;CIDR&gt;</span></span><a class="headerlink" href="#cmdoption-i" title="Link to this definition">¶</a></dt>
 <dd><p><strong>Required.</strong> Target IP address or target network in CIDR notation for the
-network scan (e.g., <code class="docutils literal notranslate"><span class="pre">1.1.1.1</span></code> or <code class="docutils literal notranslate"><span class="pre">192.168.1.0/24</span></code>).</p>
+network scan.</p>
+<p>(e.g., <code class="docutils literal notranslate"><span class="pre">1.1.1.1</span></code> or <code class="docutils literal notranslate"><span class="pre">192.168.1.0/24</span></code>)</p>
 </dd></dl>
 
 <dl class="std option">
@@ -115,14 +117,17 @@ network scan (e.g., <code class="docutils literal notranslate"><span class="pre"
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-l">
 <span id="cmdoption-max-hops"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--max-hops</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;HOPS&gt;</span></span><a class="headerlink" href="#cmdoption-l" title="Link to this definition">¶</a></dt>
-<dd><p>The maximum number of hops to perform on each traceroute trace.
-Defaults to <code class="docutils literal notranslate"><span class="pre">30</span></code>.</p>
+<dd><p>The maximum number of hops to perform on each traceroute trace. The provided
+value must be between 0 and 255 inclusive. Defaults to <code class="docutils literal notranslate"><span class="pre">30</span></code>.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-p">
 <span id="cmdoption-ports"></span><span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--ports</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;PORTS&gt;</span></span><a class="headerlink" href="#cmdoption-p" title="Link to this definition">¶</a></dt>
-<dd><p>Comma-separated list of port numbers to enumerate (e.g., <code class="docutils literal notranslate"><span class="pre">20,22,80,443</span></code>).</p>
+<dd><p>A comma-separated list of ports to enumerate. The list can contain either
+singular port numbers, a range of port numbers which is given as an
+inclusive lower and upper bound, or both.</p>
+<p>(e.g., <code class="docutils literal notranslate"><span class="pre">20,22,80,443</span></code> or <code class="docutils literal notranslate"><span class="pre">20-30,40-50</span></code> or <code class="docutils literal notranslate"><span class="pre">40-50,80,443,8080</span></code>)</p>
 <p>This option is only used when the selected scan type is <code class="docutils literal notranslate"><span class="pre">SYN</span></code>. If no ports
 are specified, a default set of ports will be enumerated, which are listed below.</p>
 </dd></dl>
@@ -131,7 +136,26 @@ are specified, a default set of ports will be enumerated, which are listed below
 <dt class="sig sig-object std" id="cmdoption-t">
 <span id="cmdoption-timeout"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--timeout</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;TIMEOUT&gt;</span></span><a class="headerlink" href="#cmdoption-t" title="Link to this definition">¶</a></dt>
 <dd><p>Timeout in seconds for how long to wait to receive a response packet from a
-host. Defaults to <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+host. The provided timeout value must be non-negative. Defaults to <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-d">
+<span id="cmdoption-do-not-scan"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--do-not-scan</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;PATH&gt;</span></span><a class="headerlink" href="#cmdoption-d" title="Link to this definition">¶</a></dt>
+<dd><p>Absolute or relative file path to a txt file where each line in the file is
+either a single IP address or CIDR IP range. Every listed IP will not be
+scanned when the network scan is performed. Defaults to <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>.</p>
+<p>(e.g., <code class="docutils literal notranslate"><span class="pre">blacklist.txt</span></code> or <code class="docutils literal notranslate"><span class="pre">/Users/username/Documents/blacklist.txt</span></code>)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-c">
+<span id="cmdoption-create-image"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--create-image</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-c" title="Link to this definition">¶</a></dt>
+<dd><p>If this flag is included, an image named <code class="docutils literal notranslate"><span class="pre">traceroute.png</span></code> will be
+generated in the local directory where the program was executed. The
+generated image is a visualization of the traceroute operations that were
+performed. This helps provide the user with a way to visualize the topology
+of the network they are scanning.</p>
 </dd></dl>
 
 </section>
@@ -214,7 +238,7 @@ SYN scan.</p>
 </div>
 <section id="command">
 <h3>Command<a class="headerlink" href="#command" title="Link to this heading">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-l<span class="w"> </span><span class="m">20</span><span class="w"> </span>-t<span class="w"> </span><span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>python3<span class="w"> </span>main.py<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-l<span class="w"> </span><span class="m">20</span><span class="w"> </span>-t<span class="w"> </span><span class="m">1</span><span class="w"> </span>-c
 </pre></div>
 </div>
 <div class="admonition note">
@@ -222,7 +246,7 @@ SYN scan.</p>
 <p>If the above command does not work, you may have to replace python3 with the
 path to your virtual environment’s python executable as shown below.</p>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>Network-Analyzer/venv/bin/python3<span class="w"> </span>main.py<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-l<span class="w"> </span><span class="m">20</span><span class="w"> </span>-t<span class="w"> </span><span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>Network-Analyzer/venv/bin/python3<span class="w"> </span>main.py<span class="w"> </span>-i<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-l<span class="w"> </span><span class="m">20</span><span class="w"> </span>-t<span class="w"> </span><span class="m">1</span><span class="w"> </span>-c
 </pre></div>
 </div>
 </section>
@@ -234,49 +258,65 @@ path to your virtual environment’s python executable as shown below.</p>
 an operating system that does not have the <code class="docutils literal notranslate"><span class="pre">/proc</span></code> directory.</p>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">========[</span>STARTING<span class="w"> </span>NETWORK<span class="w"> </span>SELF<span class="w"> </span>SCAN<span class="o">]========</span>
-Inode:<span class="w"> </span><span class="m">39928</span>
-PID:<span class="w"> </span><span class="m">13493</span>
+Inode:<span class="w"> </span><span class="m">19538</span>
+PID:<span class="w"> </span><span class="m">4886</span>
 Comm:<span class="w"> </span>python3
 Proto:<span class="w"> </span>TCP
 Local:<span class="w"> </span><span class="m">0</span>.0.0.0:8000
 Remote:<span class="w"> </span><span class="m">0</span>.0.0.0:*
 State:<span class="w"> </span>LISTEN
-Cmdline:<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="nv">8000</span>
+Cmdline:<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
+
+Inode:<span class="w"> </span><span class="m">19615</span>
+PID:<span class="w"> </span><span class="m">4972</span>
+Comm:<span class="w"> </span>nc
+Proto:<span class="w"> </span>UDP
+Local:<span class="w"> </span><span class="m">0</span>.0.0.0:12345
+Remote:<span class="w"> </span><span class="m">0</span>.0.0.0:*
+State:<span class="w"> </span>LISTEN
+Cmdline:<span class="w"> </span>nc<span class="w"> </span>-ulp<span class="w"> </span><span class="nv">12345</span>
 
 
 <span class="o">========[</span>STARTING<span class="w"> </span>ICMP<span class="w"> </span>NETWORK<span class="w"> </span>SCAN<span class="o">]========</span>
 Host:<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w">   </span>State:<span class="w"> </span>Up
-ICMP<span class="w"> </span>scan<span class="w"> </span>complete:<span class="w"> </span><span class="m">1</span><span class="w"> </span>IP<span class="w"> </span>addresses<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>hosts<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.11<span class="w"> </span><span class="nv">seconds</span>
+ICMP<span class="w"> </span>scan<span class="w"> </span>complete:<span class="w"> </span><span class="m">1</span><span class="w"> </span>IP<span class="w"> </span>addresses<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>hosts<span class="w"> </span>up<span class="o">)</span><span class="w"> </span>scanned<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.12<span class="w"> </span><span class="nv">seconds</span>
 
 <span class="o">===========[</span>STARTING<span class="w"> </span>ICMP<span class="w"> </span>TRACEROUTE<span class="o">]===========</span>
 
 traceroute<span class="w"> </span>to<span class="w"> </span><span class="m">1</span>.1.1.1,<span class="w"> </span><span class="m">20</span><span class="w"> </span>hops<span class="w"> </span>max
 --------------------------------------------------
-<span class="m">1</span><span class="w"> </span>-<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>-<span class="w"> </span><span class="m">43</span>.75ms<span class="w">  </span><span class="m">51</span>.13ms<span class="w">  </span><span class="m">47</span>.65ms
+<span class="m">1</span><span class="w"> </span>-<span class="w"> </span><span class="m">192</span>.168.1.1<span class="w"> </span>-<span class="w"> </span><span class="m">43</span>.72ms<span class="w">  </span><span class="m">43</span>.96ms<span class="w">  </span><span class="m">39</span>.43ms
 
-<span class="m">2</span><span class="w"> </span>-<span class="w"> </span><span class="m">10</span>.61.241.195<span class="w"> </span>-<span class="w"> </span><span class="m">47</span>.94ms<span class="w">  </span><span class="m">59</span>.87ms<span class="w">  </span><span class="m">55</span>.16ms
+<span class="m">2</span><span class="w"> </span>-<span class="w"> </span><span class="m">10</span>.61.241.195<span class="w"> </span>-<span class="w"> </span><span class="m">66</span>.9ms<span class="w">  </span><span class="m">55</span>.89ms<span class="w">  </span><span class="m">75</span>.6ms
 
-<span class="m">3</span><span class="w"> </span>-<span class="w"> </span><span class="m">24</span>.153.86.165<span class="w"> </span>-<span class="w"> </span><span class="m">83</span>.44ms<span class="w">  </span><span class="m">63</span>.39ms<span class="w">  </span><span class="m">63</span>.24ms
+<span class="m">3</span><span class="w"> </span>-<span class="w"> </span><span class="m">24</span>.153.86.165<span class="w"> </span>-<span class="w"> </span><span class="m">55</span>.3ms<span class="w">  </span><span class="m">67</span>.45ms<span class="w">  </span><span class="m">62</span>.79ms
 
-<span class="m">4</span><span class="w"> </span>-<span class="w"> </span><span class="m">24</span>.124.128.209<span class="w"> </span>-<span class="w"> </span><span class="m">59</span>.26ms<span class="w">  </span><span class="m">63</span>.39ms<span class="w">  </span><span class="m">59</span>.27ms
+<span class="m">4</span><span class="w"> </span>-<span class="w"> </span><span class="m">24</span>.124.128.209<span class="w"> </span>-<span class="w"> </span><span class="m">68</span>.19ms<span class="w">  </span><span class="m">67</span>.65ms<span class="w">  </span><span class="m">75</span>.56ms
 
-<span class="m">5</span><span class="w"> </span>-<span class="w"> </span><span class="m">68</span>.86.96.5<span class="w"> </span>-<span class="w"> </span><span class="m">79</span>.75ms<span class="w">  </span><span class="m">79</span>.67ms<span class="w">  </span><span class="m">71</span>.66ms
+<span class="m">5</span><span class="w"> </span>-<span class="w"> </span><span class="m">68</span>.86.96.5<span class="w"> </span>-<span class="w"> </span><span class="m">63</span>.35ms<span class="w">  </span><span class="m">87</span>.38ms<span class="w">  </span><span class="m">67</span>.48ms
 
-<span class="m">6</span><span class="w"> </span>-<span class="w"> </span><span class="m">24</span>.124.128.121<span class="w"> </span>-<span class="w"> </span><span class="m">79</span>.16ms<span class="w">  </span><span class="m">91</span>.57ms<span class="w">  </span><span class="m">87</span>.55ms
+<span class="m">6</span><span class="w"> </span>-<span class="w"> </span><span class="m">24</span>.124.128.121<span class="w"> </span>-<span class="w"> </span><span class="m">67</span>.48ms<span class="w">  </span><span class="m">67</span>.38ms<span class="w">  </span><span class="m">67</span>.48ms
 
-<span class="m">7</span><span class="w"> </span>-<span class="w"> </span><span class="m">68</span>.86.93.5<span class="w"> </span>-<span class="w"> </span><span class="m">83</span>.3ms<span class="w">  </span>*<span class="w">  </span>*
+<span class="m">7</span><span class="w"> </span>-<span class="w"> </span><span class="m">68</span>.86.93.5<span class="w"> </span>-<span class="w"> </span><span class="m">67</span>.43ms<span class="w">  </span><span class="m">67</span>.27ms<span class="w">  </span>*
 
-<span class="m">8</span><span class="w"> </span>-<span class="w"> </span><span class="m">96</span>.110.44.86<span class="w"> </span>-<span class="w"> </span><span class="m">74</span>.95ms<span class="w">  </span><span class="m">71</span>.37ms<span class="w">  </span><span class="m">78</span>.99ms
+<span class="m">8</span><span class="w"> </span>-<span class="w"> </span><span class="m">96</span>.110.44.86<span class="w"> </span>-<span class="w"> </span><span class="m">75</span>.09ms<span class="w">  </span><span class="m">91</span>.77ms<span class="w">  </span><span class="m">67</span>.39ms
 
 <span class="m">9</span><span class="w"> </span>-<span class="w"> </span>*<span class="w">  </span>*<span class="w">  </span>*<span class="w">  </span><span class="o">(</span>No<span class="w"> </span>Response<span class="o">)</span>
 
-<span class="m">10</span><span class="w"> </span>-<span class="w"> </span><span class="m">108</span>.162.243.19<span class="w"> </span>-<span class="w"> </span><span class="m">87</span>.16ms<span class="w">  </span><span class="m">75</span>.33ms<span class="w">  </span><span class="m">75</span>.65ms
+<span class="m">10</span><span class="w"> </span>-<span class="w"> </span><span class="m">108</span>.162.243.19<span class="w"> </span>-<span class="w"> </span><span class="m">71</span>.06ms<span class="w">  </span><span class="m">83</span>.45ms<span class="w">  </span><span class="m">75</span>.55ms
 
-<span class="m">11</span><span class="w"> </span>-<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-<span class="w"> </span><span class="m">75</span>.46ms<span class="w">  </span><span class="m">75</span>.19ms<span class="w">  </span><span class="m">75</span>.36ms<span class="w">  </span><span class="o">(</span>Destination<span class="w"> </span>Reached<span class="o">)</span>
+<span class="m">11</span><span class="w"> </span>-<span class="w"> </span><span class="m">1</span>.1.1.1<span class="w"> </span>-<span class="w"> </span><span class="m">67</span>.02ms<span class="w">  </span><span class="m">83</span>.92ms<span class="w">  </span><span class="m">75</span>.46ms<span class="w">  </span><span class="o">(</span>Destination<span class="w"> </span>Reached<span class="o">)</span>
 
 --------------------------------------------------
 </pre></div>
 </div>
+<p>In the above output, each of the three times in milliseconds next to each hop
+represent the round-trip times for each of the three probe packets sent to that
+hop.</p>
+</section>
+<section id="generated-traceroute-visualization">
+<h3>Generated Traceroute Visualization<a class="headerlink" href="#generated-traceroute-visualization" title="Link to this heading">¶</a></h3>
+<img alt="_images/traceroute.png" src="_images/traceroute.png" />
 </section>
 </section>
 </section>

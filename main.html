@@ -51,9 +51,12 @@
 <p class="caption" role="heading"><span class="caption-text">Codebase Documentation:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Main Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main.do_not_scan"><code class="docutils literal notranslate"><span class="pre">do_not_scan()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#main.verify_ip"><code class="docutils literal notranslate"><span class="pre">verify_ip()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main.verify_max_hops"><code class="docutils literal notranslate"><span class="pre">verify_max_hops()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#main.verify_ports"><code class="docutils literal notranslate"><span class="pre">verify_ports()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main.verify_timeout"><code class="docutils literal notranslate"><span class="pre">verify_timeout()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="selfscan.html">Selfscan Module</a></li>
@@ -91,6 +94,28 @@
 <p>This module will read command line input from the user, and subsequently
 perform the user specified network analysis.</p>
 <dl class="py function">
+<dt class="sig sig-object py" id="main.do_not_scan">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">do_not_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#main.do_not_scan" title="Link to this definition">¶</a></dt>
+<dd><p>Parses the specified file for IP addresses and CIDR ranges to blacklist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Path (relative or absolute) to the file which contains the IP
+addresses and CIDR ranges which should not be scanned.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ArgumentTypeError</strong> – If the file at the provided path cannot be opened or read.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of IP addresses which will not be scanned during the network
+scan.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="main.main">
 <span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.main" title="Link to this definition">¶</a></dt>
 <dd><p>Collects network analysis variables from user input using argparse.</p>
@@ -111,12 +136,34 @@ perform the user specified network analysis.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="main.verify_max_hops">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">verify_max_hops</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_hops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#main.verify_max_hops" title="Link to this definition">¶</a></dt>
+<dd><p>Verifies that the user provided max hops value is between 0 and 255.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_hops</strong> (<em>str</em>) – The max hops value to be checked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Integer representation of the user provided max hops value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ArgumentTypeError</strong> – If the max hops value cannot be converted to an integer or is not
+    between 0 and 255.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="main.verify_ports">
 <span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">verify_ports</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ports</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#main.verify_ports" title="Link to this definition">¶</a></dt>
 <dd><p>Verifies that the user provided a valid string of port values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ports</strong> (<em>str</em>) – A comma-separated list of port values.</p>
+<dd class="field-odd"><p><strong>ports</strong> (<em>str</em>) – A comma-separated list of port values, either single-valued or
+given as a range from a lower bound to an upper bound, inclusive.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A tuple of integers representing the ports to be scanned.</p>
@@ -127,6 +174,26 @@ perform the user specified network analysis.</p>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ArgumentTypeError</strong> – If any of the argument port values are not integers or are not in
     the range of 0-65535 (The range of valid port numbers).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.verify_timeout">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">verify_timeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#main.verify_timeout" title="Link to this definition">¶</a></dt>
+<dd><p>Verifies that the user provided timeout value is non-negative.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>str</em>) – The timeout value to be checked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Floating point representation of the user provided timeout value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ArgumentTypeError</strong> – If the timeout value is negative or cannot be converted to a float.</p>
 </dd>
 </dl>
 </dd></dl>

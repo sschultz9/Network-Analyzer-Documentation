@@ -58,7 +58,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#traceroute.TraceType.TCP"><code class="docutils literal notranslate"><span class="pre">TraceType.TCP</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#traceroute._build_graph"><code class="docutils literal notranslate"><span class="pre">_build_graph()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#traceroute._print_hop_info"><code class="docutils literal notranslate"><span class="pre">_print_hop_info()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#traceroute._save_graph_image"><code class="docutils literal notranslate"><span class="pre">_save_graph_image()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#traceroute._send_probes"><code class="docutils literal notranslate"><span class="pre">_send_probes()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#traceroute.trace"><code class="docutils literal notranslate"><span class="pre">trace()</span></code></a></li>
 </ul>
 </li>
@@ -100,7 +103,9 @@ target port is open, and a RST response means the destination host’s target
 port is closed. The ICMP traceroute works by sending ICMP Echo Request packets
 to each hop until an ICMP Echo Reply packet is received from the destination
 host. At each hop, the IP address of the hop and the time it took to reply to
-each of the three probe packets is printed to the screen.</p>
+each of the three probe packets is printed to the screen. Additionally, the
+user can specify whether they want an image created, which visualizes the
+traceroute operations that took place.</p>
 <dl class="simple">
 <dt>Typical usage example:</dt><dd><p>trace((“1.1.1.1”, “8.8.8.8”), TraceType.TCP, 30, 0.5)</p>
 </dd>
@@ -123,9 +128,27 @@ each of the three probe packets is printed to the screen.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="traceroute._build_graph">
+<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">_build_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute._build_graph" title="Link to this definition">¶</a></dt>
+<dd><p>Helper method that builds a graph based on the traceroute results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<em>nx.Graph</em>) – A graph object to add the traversed hops to.</p></li>
+<li><p><strong>hops</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of hops that were traversed on the path to the destination
+host.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="traceroute._print_hop_info">
 <span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">_print_hop_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hop_num</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute._print_hop_info" title="Link to this definition">¶</a></dt>
 <dd><p>Helper method that prints out information pertaining to the current hop.</p>
+<p>This method will print the hop number, IP address of the hop, and three
+times in milliseconds. Each of the three times represent the round-trip
+times for each of the three probe packets sent to the hop.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -141,17 +164,54 @@ host or not.</p></li>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="traceroute._save_graph_image">
+<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">_save_graph_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Graph</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute._save_graph_image" title="Link to this definition">¶</a></dt>
+<dd><p>Helper method that draws the provided graph and saves it as a png.</p>
+<p>The visualization of the traceroute operations will be saved as a png
+named <code class="docutils literal notranslate"><span class="pre">traceroute.png</span></code>, in the local directory where the program was
+executed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<em>nx.Graph</em>) – A graph object that visualizes the performed traceroute operations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="traceroute._send_probes">
+<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">_send_probes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#traceroute.TraceType" title="traceroute.TraceType"><span class="pre">TraceType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ttl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Packet</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute._send_probes" title="Link to this definition">¶</a></dt>
+<dd><p>Helper method that sends three probe packets to the next hop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>str</em>) – The final destination IP address that we are tracing a route to.</p></li>
+<li><p><strong>trace_type</strong> (<a class="reference internal" href="#traceroute.TraceType" title="traceroute.TraceType"><em>TraceType</em></a>) – The type of trace to perform. Determines the type of packets that
+will be sent to the next hop.</p></li>
+<li><p><strong>ttl</strong> (<em>int</em>) – The Time To Live value for the packets that will be sent to the
+next hop.</p></li>
+<li><p><strong>response_times</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of round-trip times in ms for each probe packet that was
+sent to the hop.</p></li>
+<li><p><strong>timeout</strong> (<em>float</em>) – Timeout in seconds for how long to wait to receive a response
+packet from a host.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="traceroute.trace">
-<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#traceroute.TraceType" title="traceroute.TraceType"><span class="pre">TraceType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_hops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute.trace" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#traceroute.TraceType" title="traceroute.TraceType"><span class="pre">TraceType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_hops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute.trace" title="Link to this definition">¶</a></dt>
 <dd><p>Prints out a trace of the route taken to each target host.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>target_range</strong> (<em>tuple</em><em>[</em><em>str</em><em>, </em><em>...</em><em>]</em>) – A tuple of target IP addresses to trace.</p></li>
+<li><p><strong>targets</strong> (<em>tuple</em><em>[</em><em>str</em><em>, </em><em>...</em><em>]</em>) – A tuple of target IP addresses to trace.</p></li>
 <li><p><strong>trace_type</strong> (<a class="reference internal" href="#traceroute.TraceType" title="traceroute.TraceType"><em>TraceType</em></a>) – The type of trace to perform.</p></li>
 <li><p><strong>max_hops</strong> (<em>int</em>) – The number of hops to trace before ending the program.</p></li>
 <li><p><strong>timeout</strong> (<em>float</em>) – Timeout in seconds for how long to wait to receive a response
 packet from a host.</p></li>
+<li><p><strong>create_image</strong> (<em>bool</em>) – Boolean value representing whether or not to create a visualization
+of the traceroute operations.</p></li>
 </ul>
 </dd>
 </dl>

@@ -7,7 +7,9 @@ Command-line Flags
 .. option:: -i, --ip <CIDR>
 
    **Required.** Target IP address or target network in CIDR notation for the 
-   network scan (e.g., ``1.1.1.1`` or ``192.168.1.0/24``).
+   network scan.
+   
+   (e.g., ``1.1.1.1`` or ``192.168.1.0/24``)
 
 .. option:: -s, --scan-type {SYN, ICMP}
 
@@ -19,12 +21,16 @@ Command-line Flags
 
 .. option:: -l, --max-hops <HOPS>
 
-   The maximum number of hops to perform on each traceroute trace. 
-   Defaults to ``30``.
+   The maximum number of hops to perform on each traceroute trace. The provided
+   value must be between 0 and 255 inclusive. Defaults to ``30``.
 
 .. option:: -p, --ports <PORTS>
 
-   Comma-separated list of port numbers to enumerate (e.g., ``20,22,80,443``). 
+   A comma-separated list of ports to enumerate. The list can contain either
+   singular port numbers, a range of port numbers which is given as an
+   inclusive lower and upper bound, or both.
+
+   (e.g., ``20,22,80,443`` or ``20-30,40-50`` or ``40-50,80,443,8080``)
    
    This option is only used when the selected scan type is ``SYN``. If no ports
    are specified, a default set of ports will be enumerated, which are listed below.
@@ -32,7 +38,23 @@ Command-line Flags
 .. option:: -t, --timeout <TIMEOUT>
 
    Timeout in seconds for how long to wait to receive a response packet from a
-   host. Defaults to ``2``.
+   host. The provided timeout value must be non-negative. Defaults to ``2``.
+
+.. option:: -d, --do-not-scan <PATH>
+
+   Absolute or relative file path to a txt file where each line in the file is
+   either a single IP address or CIDR IP range. Every listed IP will not be
+   scanned when the network scan is performed. Defaults to ``""``.
+
+   (e.g., ``blacklist.txt`` or ``/Users/username/Documents/blacklist.txt``)
+
+.. option:: -c, --create-image
+
+   If this flag is included, an image named ``traceroute.png`` will be
+   generated in the local directory where the program was executed. The
+   generated image is a visualization of the traceroute operations that were 
+   performed. This helps provide the user with a way to visualize the topology
+   of the network they are scanning.
 
 Default ports
 --------------
@@ -94,7 +116,7 @@ Command
 
 .. code-block:: bash
 
-    sudo python3 main.py -i 1.1.1.1 -l 20 -t 1
+    sudo python3 main.py -i 1.1.1.1 -l 20 -t 1 -c
 
 .. note::
 
@@ -103,7 +125,7 @@ Command
 
 .. code-block:: bash
 
-    sudo Network-Analyzer/venv/bin/python3 main.py -i 1.1.1.1 -l 20 -t 1
+    sudo Network-Analyzer/venv/bin/python3 main.py -i 1.1.1.1 -l 20 -t 1 -c
 
 Output
 ~~~~~~
@@ -115,45 +137,64 @@ Output
 
 .. code-block:: bash
 
-    ========[STARTING NETWORK SELF SCAN]========
-    Inode: 39928
-    PID: 13493
-    Comm: python3
-    Proto: TCP
-    Local: 0.0.0.0:8000
-    Remote: 0.0.0.0:*
-    State: LISTEN
-    Cmdline: python3 -m http.server 8000
+   ========[STARTING NETWORK SELF SCAN]========
+   Inode: 19538
+   PID: 4886
+   Comm: python3
+   Proto: TCP
+   Local: 0.0.0.0:8000
+   Remote: 0.0.0.0:*
+   State: LISTEN
+   Cmdline: python3 -m http.server 8000
+
+   Inode: 19615
+   PID: 4972
+   Comm: nc
+   Proto: UDP
+   Local: 0.0.0.0:12345
+   Remote: 0.0.0.0:*
+   State: LISTEN
+   Cmdline: nc -ulp 12345
 
 
-    ========[STARTING ICMP NETWORK SCAN]========
-    Host: 1.1.1.1   State: Up
-    ICMP scan complete: 1 IP addresses (1 hosts up) scanned in 0.11 seconds
+   ========[STARTING ICMP NETWORK SCAN]========
+   Host: 1.1.1.1   State: Up
+   ICMP scan complete: 1 IP addresses (1 hosts up) scanned in 0.12 seconds
 
-    ===========[STARTING ICMP TRACEROUTE]===========
+   ===========[STARTING ICMP TRACEROUTE]===========
 
-    traceroute to 1.1.1.1, 20 hops max
-    --------------------------------------------------
-    1 - 192.168.1.1 - 43.75ms  51.13ms  47.65ms
+   traceroute to 1.1.1.1, 20 hops max
+   --------------------------------------------------
+   1 - 192.168.1.1 - 43.72ms  43.96ms  39.43ms
 
-    2 - 10.61.241.195 - 47.94ms  59.87ms  55.16ms
+   2 - 10.61.241.195 - 66.9ms  55.89ms  75.6ms
 
-    3 - 24.153.86.165 - 83.44ms  63.39ms  63.24ms
+   3 - 24.153.86.165 - 55.3ms  67.45ms  62.79ms
 
-    4 - 24.124.128.209 - 59.26ms  63.39ms  59.27ms
+   4 - 24.124.128.209 - 68.19ms  67.65ms  75.56ms
 
-    5 - 68.86.96.5 - 79.75ms  79.67ms  71.66ms
+   5 - 68.86.96.5 - 63.35ms  87.38ms  67.48ms
 
-    6 - 24.124.128.121 - 79.16ms  91.57ms  87.55ms
+   6 - 24.124.128.121 - 67.48ms  67.38ms  67.48ms
 
-    7 - 68.86.93.5 - 83.3ms  *  *
+   7 - 68.86.93.5 - 67.43ms  67.27ms  *
 
-    8 - 96.110.44.86 - 74.95ms  71.37ms  78.99ms
+   8 - 96.110.44.86 - 75.09ms  91.77ms  67.39ms
 
-    9 - *  *  *  (No Response)
+   9 - *  *  *  (No Response)
 
-    10 - 108.162.243.19 - 87.16ms  75.33ms  75.65ms
+   10 - 108.162.243.19 - 71.06ms  83.45ms  75.55ms
 
-    11 - 1.1.1.1 - 75.46ms  75.19ms  75.36ms  (Destination Reached)
+   11 - 1.1.1.1 - 67.02ms  83.92ms  75.46ms  (Destination Reached)
 
-    --------------------------------------------------
+   --------------------------------------------------
+
+
+In the above output, each of the three times in milliseconds next to each hop
+represent the round-trip times for each of the three probe packets sent to that
+hop.
+
+Generated Traceroute Visualization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. image:: images/traceroute.png

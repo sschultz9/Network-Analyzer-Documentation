@@ -83,6 +83,7 @@
  <a href="#Symbols"><strong>Symbols</strong></a>
  | <a href="#_"><strong>_</strong></a>
  | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#S"><strong>S</strong></a>
@@ -93,6 +94,20 @@
 <h2 id="Symbols">Symbols</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --create-image
+
+      <ul>
+        <li><a href="usage.html#cmdoption-c">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --do-not-scan
+
+      <ul>
+        <li><a href="usage.html#cmdoption-d">command line option</a>
+</li>
+      </ul></li>
       <li>
     --ip
 
@@ -137,6 +152,20 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    -c
+
+      <ul>
+        <li><a href="usage.html#cmdoption-c">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -d
+
+      <ul>
+        <li><a href="usage.html#cmdoption-d">command line option</a>
+</li>
+      </ul></li>
       <li>
     -i
 
@@ -185,19 +214,25 @@
 <h2 id="_">_</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="traceroute.html#traceroute._build_graph">_build_graph() (in module traceroute)</a>
+</li>
       <li><a href="selfscan.html#selfscan._enumerate_pids">_enumerate_pids() (in module selfscan)</a>
 </li>
       <li><a href="selfscan.html#selfscan._get_proc_net">_get_proc_net() (in module selfscan)</a>
 </li>
       <li><a href="selfscan.html#selfscan._hex_conversion">_hex_conversion() (in module selfscan)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="scanner.html#scanner._icmp_scan">_icmp_scan() (in module scanner)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="selfscan.html#selfscan._list_inodes">_list_inodes() (in module selfscan)</a>
 </li>
       <li><a href="traceroute.html#traceroute._print_hop_info">_print_hop_info() (in module traceroute)</a>
+</li>
+      <li><a href="traceroute.html#traceroute._save_graph_image">_save_graph_image() (in module traceroute)</a>
+</li>
+      <li><a href="traceroute.html#traceroute._send_probes">_send_probes() (in module traceroute)</a>
 </li>
       <li><a href="scanner.html#scanner._syn_scan">_syn_scan() (in module scanner)</a>
 </li>
@@ -211,6 +246,10 @@
     command line option
 
       <ul>
+        <li><a href="usage.html#cmdoption-c">--create-image</a>
+</li>
+        <li><a href="usage.html#cmdoption-d">--do-not-scan</a>
+</li>
         <li><a href="usage.html#cmdoption-i">--ip</a>
 </li>
         <li><a href="usage.html#cmdoption-l">--max-hops</a>
@@ -222,6 +261,10 @@
         <li><a href="usage.html#cmdoption-s">--scan-type</a>
 </li>
         <li><a href="usage.html#cmdoption-t">--timeout</a>
+</li>
+        <li><a href="usage.html#cmdoption-c">-c</a>
+</li>
+        <li><a href="usage.html#cmdoption-d">-d</a>
 </li>
         <li><a href="usage.html#cmdoption-i">-i</a>
 </li>
@@ -238,6 +281,14 @@
         <li><a href="usage.html#cmdoption-m">ICMP}</a>, <a href="usage.html#cmdoption-s">[1]</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="main.html#main.do_not_scan">do_not_scan() (in module main)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -346,9 +397,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="main.html#main.verify_ip">verify_ip() (in module main)</a>
 </li>
+      <li><a href="main.html#main.verify_max_hops">verify_max_hops() (in module main)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="main.html#main.verify_ports">verify_ports() (in module main)</a>
+</li>
+      <li><a href="main.html#main.verify_timeout">verify_timeout() (in module main)</a>
 </li>
   </ul></td>
 </tr></table>
