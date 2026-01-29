@@ -198,3 +198,6 @@ Generated Traceroute Visualization
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. image:: images/traceroute.png
+
+Traceroute operations where the destination host could not be reached are not
+included in the visualization image.

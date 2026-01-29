@@ -129,7 +129,7 @@ traceroute operations that took place.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="traceroute._build_graph">
-<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">_build_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute._build_graph" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">_build_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hops</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_reached</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute._build_graph" title="Link to this definition">¶</a></dt>
 <dd><p>Helper method that builds a graph based on the traceroute results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -137,6 +137,8 @@ traceroute operations that took place.</p>
 <li><p><strong>graph</strong> (<em>nx.Graph</em>) – A graph object to add the traversed hops to.</p></li>
 <li><p><strong>hops</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of hops that were traversed on the path to the destination
 host.</p></li>
+<li><p><strong>destination_reached</strong> (<em>bool</em>) – Boolean value representing whether the target destination was
+reached during the traceroute operation.</p></li>
 </ul>
 </dd>
 </dl>
