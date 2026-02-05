@@ -17,6 +17,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="OS Detection Module" href="os_detection.html" />
     <link rel="prev" title="Traceroute Module" href="traceroute.html" /> 
 </head>
 
@@ -53,16 +54,55 @@
 <li class="toctree-l1"><a class="reference internal" href="selfscan.html">Selfscan Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="traceroute.html">Traceroute Module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Scanner Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scanner.PortInfo"><code class="docutils literal notranslate"><span class="pre">PortInfo</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.PortInfo.confidence"><code class="docutils literal notranslate"><span class="pre">PortInfo.confidence</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.PortInfo.cve_ids"><code class="docutils literal notranslate"><span class="pre">PortInfo.cve_ids</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.PortInfo.port"><code class="docutils literal notranslate"><span class="pre">PortInfo.port</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.PortInfo.service"><code class="docutils literal notranslate"><span class="pre">PortInfo.service</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.PortInfo.state"><code class="docutils literal notranslate"><span class="pre">PortInfo.state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.PortInfo.version"><code class="docutils literal notranslate"><span class="pre">PortInfo.version</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#scanner.ScanConfig"><code class="docutils literal notranslate"><span class="pre">ScanConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.ScanConfig.cve_scan"><code class="docutils literal notranslate"><span class="pre">ScanConfig.cve_scan</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.ScanConfig.os_detection"><code class="docutils literal notranslate"><span class="pre">ScanConfig.os_detection</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.ScanConfig.ports"><code class="docutils literal notranslate"><span class="pre">ScanConfig.ports</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.ScanConfig.scan_type"><code class="docutils literal notranslate"><span class="pre">ScanConfig.scan_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.ScanConfig.service_scan"><code class="docutils literal notranslate"><span class="pre">ScanConfig.service_scan</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.ScanConfig.targets"><code class="docutils literal notranslate"><span class="pre">ScanConfig.targets</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.ScanConfig.timeout"><code class="docutils literal notranslate"><span class="pre">ScanConfig.timeout</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.ScanConfig.verbose"><code class="docutils literal notranslate"><span class="pre">ScanConfig.verbose</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#scanner.ScanType"><code class="docutils literal notranslate"><span class="pre">ScanType</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#scanner.ScanType.ICMP"><code class="docutils literal notranslate"><span class="pre">ScanType.ICMP</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#scanner.ScanType.SYN"><code class="docutils literal notranslate"><span class="pre">ScanType.SYN</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#scanner._icmp_scan"><code class="docutils literal notranslate"><span class="pre">_icmp_scan()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#scanner._syn_scan"><code class="docutils literal notranslate"><span class="pre">_syn_scan()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#scanner.scan"><code class="docutils literal notranslate"><span class="pre">scan()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scanner.Scanner"><code class="docutils literal notranslate"><span class="pre">Scanner</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._get_cpe"><code class="docutils literal notranslate"><span class="pre">Scanner._get_cpe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._get_cves"><code class="docutils literal notranslate"><span class="pre">Scanner._get_cves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._icmp_scan"><code class="docutils literal notranslate"><span class="pre">Scanner._icmp_scan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._log_cves"><code class="docutils literal notranslate"><span class="pre">Scanner._log_cves()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._null_probe"><code class="docutils literal notranslate"><span class="pre">Scanner._null_probe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._parse_banner"><code class="docutils literal notranslate"><span class="pre">Scanner._parse_banner()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._parse_http"><code class="docutils literal notranslate"><span class="pre">Scanner._parse_http()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._parse_openssh"><code class="docutils literal notranslate"><span class="pre">Scanner._parse_openssh()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._print_host_header"><code class="docutils literal notranslate"><span class="pre">Scanner._print_host_header()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._print_port_info"><code class="docutils literal notranslate"><span class="pre">Scanner._print_port_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._print_scan_summary"><code class="docutils literal notranslate"><span class="pre">Scanner._print_scan_summary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._probe_http"><code class="docutils literal notranslate"><span class="pre">Scanner._probe_http()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._probe_https"><code class="docutils literal notranslate"><span class="pre">Scanner._probe_https()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._probe_postgresql"><code class="docutils literal notranslate"><span class="pre">Scanner._probe_postgresql()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._probe_smtp"><code class="docutils literal notranslate"><span class="pre">Scanner._probe_smtp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._service_scan"><code class="docutils literal notranslate"><span class="pre">Scanner._service_scan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner._syn_scan"><code class="docutils literal notranslate"><span class="pre">Scanner._syn_scan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scanner.Scanner.scan"><code class="docutils literal notranslate"><span class="pre">Scanner.scan()</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="os_detection.html">OS Detection Module</a></li>
 </ul>
 
         </div>
@@ -91,20 +131,143 @@
              
   <section id="module-scanner">
 <span id="scanner-module"></span><h1>Scanner Module<a class="headerlink" href="#module-scanner" title="Link to this heading">¶</a></h1>
-<p>Module containing network scanning functionality.</p>
-<p>The scan function can perform a variety of scans on a target network, which
+<p>Module containing the Scanner class for network scanning functionality.</p>
+<p>The Scanner class can perform a variety of scans on a target network, which
 is specified via CIDR notation. If the scan type is a SYN scan, then the scan
 will enumerate a list of ports on each target host as specified by the user.
-Each port is sent a SYN packet and if a SYN/ACK is received as a response the
-port is listed as open, if a RST is received as a response the port is marked
-as closed, and if an ICMP Destination Unreachable packet is received or there
-is no response, then the port is listed as being filtered. The ICMP scan is
-much simpler as it just sends an ICMP Echo Request packet to every target host
-and lists the hosts that responded as being alive.</p>
-<dl class="simple">
-<dt>Typical usage example:</dt><dd><p>scan(“192.168.1.0/24”, ScanType.ICMP, (22, 23, 80, 443), 0.5)</p>
-</dd>
-</dl>
+Each port is sent as a SYN packet. If a SYN/ACK is received as a response, the
+user port is listed as open. If a RST is received as a response, the port is
+marked as closed. Otherwise, the port is listed as being filtered. If verbose
+is set to true in the scan configuration, then the scanning results for all
+ports will be displayed. Otherwise only the information pertaining to open
+ports will be displayed. Additionally, if service scan is set to true in the
+configuration, each open port will be further scanned to determine the service
+running on the open port, as well as the version of the service if it can be
+determined. Otherwise, a well-known mapping between ports and services will be
+utilized. Finally, if the cve scan option is set to true in the
+configuration then each service that is found to be running on an open port
+will be checked for associated CVEs, and the IDs for these CVEs will be written
+to an output file. The ICMP scan is much simpler as it just sends an ICMP Echo
+Request packet to every target host and lists the hosts that responded as being
+alive.</p>
+<p>Typical usage example:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="n">ScanConfig</span><span class="p">(</span>
+    <span class="n">targets</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;192.168.1.0/24&quot;</span><span class="p">],</span>
+    <span class="n">scan_type</span><span class="o">=</span><span class="n">ScanType</span><span class="o">.</span><span class="n">ICMP</span><span class="p">,</span>
+    <span class="n">ports</span><span class="o">=</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">443</span><span class="p">),</span>
+    <span class="n">timeout</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">os_detection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">service_scan</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cve_scan</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">scanner</span> <span class="o">=</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">alive_hosts</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="scanner.PortInfo">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scanner.</span></span><span class="sig-name descname"><span class="pre">PortInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cve_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scanner.PortInfo" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass for storing information about scanned ports.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.PortInfo.confidence">
+<span class="sig-name descname"><span class="pre">confidence</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#scanner.PortInfo.confidence" title="Link to this definition">¶</a></dt>
+<dd><p>Confidence level as it pertains to identifying the service running on
+the port. (This can be either LOW, MEDIUM, or HIGH).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.PortInfo.cve_ids">
+<span class="sig-name descname"><span class="pre">cve_ids</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#scanner.PortInfo.cve_ids" title="Link to this definition">¶</a></dt>
+<dd><p>List of CVE IDs associated with the version of a service running on an
+open port.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.PortInfo.port">
+<span class="sig-name descname"><span class="pre">port</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#scanner.PortInfo.port" title="Link to this definition">¶</a></dt>
+<dd><p>Port number.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.PortInfo.service">
+<span class="sig-name descname"><span class="pre">service</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#scanner.PortInfo.service" title="Link to this definition">¶</a></dt>
+<dd><p>Service running on the port.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.PortInfo.state">
+<span class="sig-name descname"><span class="pre">state</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#scanner.PortInfo.state" title="Link to this definition">¶</a></dt>
+<dd><p>Port state (open, closed, or filtered).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.PortInfo.version">
+<span class="sig-name descname"><span class="pre">version</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#scanner.PortInfo.version" title="Link to this definition">¶</a></dt>
+<dd><p>Version of the service running on the port.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="scanner.ScanConfig">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scanner.</span></span><span class="sig-name descname"><span class="pre">ScanConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#scanner.ScanType" title="scanner.ScanType"><span class="pre">ScanType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ports</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">os_detection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cve_scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scanner.ScanConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass for storing a network scanning configuration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.ScanConfig.cve_scan">
+<span class="sig-name descname"><span class="pre">cve_scan</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#scanner.ScanConfig.cve_scan" title="Link to this definition">¶</a></dt>
+<dd><p>If True, check detected services and versions against known CVEs.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.ScanConfig.os_detection">
+<span class="sig-name descname"><span class="pre">os_detection</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#scanner.ScanConfig.os_detection" title="Link to this definition">¶</a></dt>
+<dd><p>If True, perform OS detection for each alive host during the network
+scan.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.ScanConfig.ports">
+<span class="sig-name descname"><span class="pre">ports</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#scanner.ScanConfig.ports" title="Link to this definition">¶</a></dt>
+<dd><p>Tuple of TCP ports to scan.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.ScanConfig.scan_type">
+<span class="sig-name descname"><span class="pre">scan_type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#scanner.ScanType" title="scanner.ScanType"><span class="pre">ScanType</span></a></span><a class="headerlink" href="#scanner.ScanConfig.scan_type" title="Link to this definition">¶</a></dt>
+<dd><p>Type of network scan to perform (SYN or ICMP).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.ScanConfig.service_scan">
+<span class="sig-name descname"><span class="pre">service_scan</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#scanner.ScanConfig.service_scan" title="Link to this definition">¶</a></dt>
+<dd><p>If True, attempt to identify services and versions on open ports.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.ScanConfig.targets">
+<span class="sig-name descname"><span class="pre">targets</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#scanner.ScanConfig.targets" title="Link to this definition">¶</a></dt>
+<dd><p>List of target IP addresses to be scanned.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.ScanConfig.timeout">
+<span class="sig-name descname"><span class="pre">timeout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#scanner.ScanConfig.timeout" title="Link to this definition">¶</a></dt>
+<dd><p>Timeout in seconds to wait for a response packet.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="scanner.ScanConfig.verbose">
+<span class="sig-name descname"><span class="pre">verbose</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></span><a class="headerlink" href="#scanner.ScanConfig.verbose" title="Link to this definition">¶</a></dt>
+<dd><p>If True, print all port results, otherwise only open ports.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="scanner.ScanType">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scanner.</span></span><span class="sig-name descname"><span class="pre">ScanType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scanner.ScanType" title="Link to this definition">¶</a></dt>
@@ -122,21 +285,61 @@ and lists the hosts that responded as being alive.</p>
 
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="scanner._icmp_scan">
-<span class="sig-prename descclassname"><span class="pre">scanner.</span></span><span class="sig-name descname"><span class="pre">_icmp_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner._icmp_scan" title="Link to this definition">¶</a></dt>
-<dd><p>Performs an ICMP scan against the target hosts.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="scanner.Scanner">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">scanner.</span></span><span class="sig-name descname"><span class="pre">Scanner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#scanner.ScanConfig" title="scanner.ScanConfig"><span class="pre">ScanConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scanner.Scanner" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for performing network scans based on a provided configuration.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._get_cpe">
+<span class="sig-name descname"><span class="pre">_get_cpe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#scanner.PortInfo" title="scanner.PortInfo"><span class="pre">PortInfo</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#scanner.Scanner._get_cpe" title="Link to this definition">¶</a></dt>
+<dd><p>Get the CPE string used for classifying CVEs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>targets</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of target IP addresses to scan.</p></li>
-<li><p><strong>timeout</strong> (<em>float</em>) – Timeout in seconds for how long to wait to receive a response
-packet from a host.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>port_info</strong> (<a class="reference internal" href="#scanner.PortInfo" title="scanner.PortInfo"><em>PortInfo</em></a>) – PortInfo object that contains information about the service
+running on the open port.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A tuple of the hosts that were found to be alive in the network
-scan.</p>
+<dd class="field-even"><p>The retrieved CPE string, or None if a CPE string could not
+be retrieved.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._get_cves">
+<span class="sig-name descname"><span class="pre">_get_cves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#scanner.PortInfo" title="scanner.PortInfo"><span class="pre">PortInfo</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner.Scanner._get_cves" title="Link to this definition">¶</a></dt>
+<dd><p>Get the CVEs associated with the service running on the open port.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port_info</strong> (<a class="reference internal" href="#scanner.PortInfo" title="scanner.PortInfo"><em>PortInfo</em></a>) – PortInfo object that contains information about the service
+running on the open port.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of CVE IDs associated with the service running on the open
+port.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._icmp_scan">
+<span class="sig-name descname"><span class="pre">_icmp_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">print_results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner.Scanner._icmp_scan" title="Link to this definition">¶</a></dt>
+<dd><p>Performs an ICMP host discovery scan against the target hosts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>print_results</strong> (<em>bool</em>) – Boolean that determines whether to print the scan results or
+not. Defaults to True.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple of IP addresses, which are the hosts that were found to
+be alive during the network scan.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple[str, …]</p>
@@ -144,52 +347,270 @@ scan.</p>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="scanner._syn_scan">
-<span class="sig-prename descclassname"><span class="pre">scanner.</span></span><span class="sig-name descname"><span class="pre">_syn_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ports</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner._syn_scan" title="Link to this definition">¶</a></dt>
-<dd><p>Performs a SYN scan against the target hosts.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._log_cves">
+<span class="sig-name descname"><span class="pre">_log_cves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#scanner.PortInfo" title="scanner.PortInfo"><span class="pre">PortInfo</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#scanner.Scanner._log_cves" title="Link to this definition">¶</a></dt>
+<dd><p>Log CVE information for a service running on an open port to a file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>targets</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of target IP addresses to scan.</p></li>
-<li><p><strong>ports</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>...</em><em>]</em>) – Tuple of ports to scan on each target host.</p></li>
-<li><p><strong>timeout</strong> (<em>float</em>) – Timeout in seconds for how long to wait to receive a response
-packet from a host.</p></li>
+<li><p><strong>target</strong> (<em>str</em>) – The IP address of the host with the open port.</p></li>
+<li><p><strong>port_info</strong> (<a class="reference internal" href="#scanner.PortInfo" title="scanner.PortInfo"><em>PortInfo</em></a>) – The information associated with the open port.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A tuple of the hosts that were found to be alive in the
-network scan.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple[str, …]</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="scanner.scan">
-<span class="sig-prename descclassname"><span class="pre">scanner.</span></span><span class="sig-name descname"><span class="pre">scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#scanner.ScanType" title="scanner.ScanType"><span class="pre">ScanType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ports</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner.scan" title="Link to this definition">¶</a></dt>
-<dd><p>Performs a specified network scan on each target IP address.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._null_probe">
+<span class="sig-name descname"><span class="pre">_null_probe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#scanner.Scanner._null_probe" title="Link to this definition">¶</a></dt>
+<dd><p>Try to grab a welcome banner from the open port via a NULL probe.</p>
+<p>A NULL probe is when we create a connection with the target host on the
+open port and then listen for responses without sending any data. We do
+this because many services identify themselves via an initial welcome
+banner.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>targets</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of IP addresses to scan.</p></li>
-<li><p><strong>scan_type</strong> (<a class="reference internal" href="#scanner.ScanType" title="scanner.ScanType"><em>ScanType</em></a>) – The type of network scan to perform on the target hosts.</p></li>
-<li><p><strong>ports</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>...</em><em>]</em>) – A tuple of ports to scan on each target host if the scan is a
-SYN scan.</p></li>
-<li><p><strong>timeout</strong> (<em>float</em>) – Timeout in seconds for how long to wait to receive a response
-packet from a host.</p></li>
+<li><p><strong>target</strong> (<em>str</em>) – The target host with the open port to grab the banner from.</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – The open port to grab the banner from.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A tuple of the hosts that were found to be alive in the network
-scan.</p>
+<dd class="field-even"><p>The welcome banner that was retrieved from the open port, or
+None if no welcome banner could be retrieved.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tuple[str, …]</p>
+<dd class="field-odd"><p>str | None</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._parse_banner">
+<span class="sig-name descname"><span class="pre">_parse_banner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">banner</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner.Scanner._parse_banner" title="Link to this definition">¶</a></dt>
+<dd><p>Parse a banner that was grabbed for service and version information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>banner</strong> (<em>str</em>) – The banner to parse.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple where the first element is the name of the service, and
+the second element is the version information for the service.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str | None, str | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._parse_http">
+<span class="sig-name descname"><span class="pre">_parse_http</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#scanner.Scanner._parse_http" title="Link to this definition">¶</a></dt>
+<dd><p>Parse the service name and version number from HTTP version string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>version</strong> (<em>str</em>) – The HTTP version string to parse.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple where the first element is the service name, and the
+second is the version number. Otherwise, None if the service
+name and version number could not be parsed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str, str] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._parse_openssh">
+<span class="sig-name descname"><span class="pre">_parse_openssh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#scanner.Scanner._parse_openssh" title="Link to this definition">¶</a></dt>
+<dd><p>Parse service name and version number from openssh version string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>version</strong> (<em>str</em>) – The OpenSSH version string to parse.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple where the first element is the service name, and the
+second is the version number. Otherwise, None if the service
+name and version number could not be parsed.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str, str] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._print_host_header">
+<span class="sig-name descname"><span class="pre">_print_host_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#scanner.Scanner._print_host_header" title="Link to this definition">¶</a></dt>
+<dd><p>Print the header information for a host.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The host to print the header information for.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._print_port_info">
+<span class="sig-name descname"><span class="pre">_print_port_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#scanner.PortInfo" title="scanner.PortInfo"><span class="pre">PortInfo</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#scanner.Scanner._print_port_info" title="Link to this definition">¶</a></dt>
+<dd><p>Print the information for a single port.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port_info</strong> (<a class="reference internal" href="#scanner.PortInfo" title="scanner.PortInfo"><em>PortInfo</em></a>) – The port information to be printed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._print_scan_summary">
+<span class="sig-name descname"><span class="pre">_print_scan_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alive_hosts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#scanner.Scanner._print_scan_summary" title="Link to this definition">¶</a></dt>
+<dd><p>Print summary information for a network scan.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alive_hosts</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – A list of the hosts that were found to be alive during the
+network scan.</p></li>
+<li><p><strong>scan_start</strong> (<em>float</em>) – The start time in seconds for the network scan.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._probe_http">
+<span class="sig-name descname"><span class="pre">_probe_http</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner.Scanner._probe_http" title="Link to this definition">¶</a></dt>
+<dd><p>Probe the open port on the target host with an HTTP GET request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>str</em>) – The target host with the open port to probe via HTTP.</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – The open port to probe with an HTTP GET request.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple where the first element is the name of the service, and
+the second element is the version information for the service.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str | None, str | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._probe_https">
+<span class="sig-name descname"><span class="pre">_probe_https</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner.Scanner._probe_https" title="Link to this definition">¶</a></dt>
+<dd><p>Probe the open port on the target host with an HTTPS GET request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>str</em>) – The target host with the open port to probe via HTTPS.</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – The open port to probe with an HTTPS GET request.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple where the first element is the name of the service, and
+the second element is the version information for the service.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str | None, str | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._probe_postgresql">
+<span class="sig-name descname"><span class="pre">_probe_postgresql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner.Scanner._probe_postgresql" title="Link to this definition">¶</a></dt>
+<dd><p>Probe the open port with a postgresql ssl negotiation message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>str</em>) – The target host with the open port to probe via a postgresql
+ssl negotiation message.</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – The open port to probe with a postgresql ssl negotiation
+message.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple where the first element is the name of the service, and
+the second element is the version information for the service.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str | None, str | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._probe_smtp">
+<span class="sig-name descname"><span class="pre">_probe_smtp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner.Scanner._probe_smtp" title="Link to this definition">¶</a></dt>
+<dd><p>Probe the open port on the target host with an SMTP EHLO command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>str</em>) – The target host with the open port to probe via a SMTP EHLO
+command.</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – The open port to probe with an SMTP EHLO command.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple where the first element is the name of the service, and
+the second element is the version information for the service.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[str | None, str | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._service_scan">
+<span class="sig-name descname"><span class="pre">_service_scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#scanner.PortInfo" title="scanner.PortInfo"><span class="pre">PortInfo</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#scanner.Scanner._service_scan" title="Link to this definition">¶</a></dt>
+<dd><p>Scan for the service that is running on the target host’s open port.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>str</em>) – The target host with the open port to scan.</p></li>
+<li><p><strong>port_info</strong> (<a class="reference internal" href="#scanner.PortInfo" title="scanner.PortInfo"><em>PortInfo</em></a>) – The PortInfo object which contains information about the port
+to be scanned.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner._syn_scan">
+<span class="sig-name descname"><span class="pre">_syn_scan</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner.Scanner._syn_scan" title="Link to this definition">¶</a></dt>
+<dd><p>Performs a TCP SYN port scan against the target hosts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple of IP addresses, which are the hosts that were found to
+be alive during the network scan.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[str, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scanner.Scanner.scan">
+<span class="sig-name descname"><span class="pre">scan</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#scanner.Scanner.scan" title="Link to this definition">¶</a></dt>
+<dd><p>Performs a network scan based on the current scan configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple of IP addresses, which are the hosts that were found to
+be alive during the network scan.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[str, …]</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -199,6 +620,7 @@ scan.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="traceroute.html" class="btn btn-neutral float-left" title="Traceroute Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="os_detection.html" class="btn btn-neutral float-right" title="OS Detection Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

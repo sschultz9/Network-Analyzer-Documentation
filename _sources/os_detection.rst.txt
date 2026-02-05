@@ -1,0 +1,8 @@
+OS Detection Module
+===================
+
+.. automodule:: os_detection
+   :members:
+   :undoc-members:
+   :private-members:
+   :show-inheritance:

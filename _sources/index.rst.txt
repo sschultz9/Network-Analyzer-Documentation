@@ -26,3 +26,4 @@ Network Analyzer Documentation
    selfscan
    traceroute
    scanner
+   os_detection

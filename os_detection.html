@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OS Detection Module &mdash; Network Analyzer 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Scanner Module" href="scanner.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Network Analyzer
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quickstart:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">How to Use:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Codebase Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="main.html">Main Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="selfscan.html">Selfscan Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="traceroute.html">Traceroute Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scanner.html">Scanner Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OS Detection Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#os_detection.check_for_increment_by_one_ipids"><code class="docutils literal notranslate"><span class="pre">check_for_increment_by_one_ipids()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#os_detection.check_for_incremental_per_connection"><code class="docutils literal notranslate"><span class="pre">check_for_incremental_per_connection()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#os_detection.check_for_random_ipid"><code class="docutils literal notranslate"><span class="pre">check_for_random_ipid()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#os_detection.detect_os"><code class="docutils literal notranslate"><span class="pre">detect_os()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#os_detection.send_synack"><code class="docutils literal notranslate"><span class="pre">send_synack()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#os_detection.send_traffic"><code class="docutils literal notranslate"><span class="pre">send_traffic()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#os_detection.ttl_probe"><code class="docutils literal notranslate"><span class="pre">ttl_probe()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Network Analyzer</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">OS Detection Module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/os_detection.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-os_detection">
+<span id="os-detection-module"></span><h1>OS Detection Module<a class="headerlink" href="#module-os_detection" title="Link to this heading">¶</a></h1>
+<p>Module containing operating system detection functionality.
+This module takes a list of IP addresses to run OS detection on.
+There are three tests that are used to determine the OS.</p>
+<p>One is the TTL value. Windows, by default, will send packets with a starting
+TTL value of 128. Other systems will send packets with a starting
+TTL value of 64.</p>
+<p>The IPID is tested with a sequence of tests.
+The program will check if unprompted SYN/ACKs receive RSTs with IPIDs of 0.
+Next, the program will test if the TCP IPID field consistently increments by 1.
+If the IPID is incrementing by 1, it is then checked for per-bucket or
+per-connection behavior.
+If the IPID did not increment by 1, The IPID is also checked for ‘random’
+behavior. If each IPID is consistently greater than the one preceding it,
+then it is determined to be ‘not random’. If the IPIDs break this chain
+of sequence, then they are considered random.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="os_detection.check_for_increment_by_one_ipids">
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">check_for_increment_by_one_ipids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#os_detection.check_for_increment_by_one_ipids" title="Link to this definition">¶</a></dt>
+<dd><p>Checks if the IPIDs from a specified target are incrementing by 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the IPID value seems to increment by 1.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="os_detection.check_for_incremental_per_connection">
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">check_for_incremental_per_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#os_detection.check_for_incremental_per_connection" title="Link to this definition">¶</a></dt>
+<dd><p>Determine if the IPID increment is per-connection or per-bucket.</p>
+<p>This will only  run if the IPIDs are previously found to be globally
+incrementing. If so, this test will check if the IPID seems to
+be incrementing on a shared (bucket) counter, or if the IPID
+is specific to each connection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the device has a globally incrementing IPID.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="os_detection.check_for_random_ipid">
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">check_for_random_ipid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#os_detection.check_for_random_ipid" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluate if the IPID seems to be random or incrementing on some range.</p>
+<p>This test will check if the IPID values seem to be ‘random’.
+This is done by sending a stream of traffic and seeing if the IPIDs
+are consistently increasing by some value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the device appears to have a random IPID.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="os_detection.detect_os">
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">detect_os</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#os_detection.detect_os" title="Link to this definition">¶</a></dt>
+<dd><p>Run OS fingerprinting checks on a list of targets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The target IP address to identify the OS of.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="os_detection.send_synack">
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">send_synack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#os_detection.send_synack" title="Link to this definition">¶</a></dt>
+<dd><p>Sends unprompted SYN/ACK traffic and checks if the IPID is zero on RST.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the IPIDs are zero.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="os_detection.send_traffic">
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">send_traffic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protocol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#os_detection.send_traffic" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the IPIDs from traffic directed at a specified target.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>count</strong> (<em>int</em>) – Number of packets to send.</p></li>
+<li><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p></li>
+<li><p><strong>protocol</strong> (<em>str</em>) – The protocol used to send traffic.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The list of received IPIDs.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="os_detection.ttl_probe">
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">ttl_probe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#os_detection.ttl_probe" title="Link to this definition">¶</a></dt>
+<dd><p>Sends traffic to the specified target and determines the TTL value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The TTL received from the single probe.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scanner.html" class="btn btn-neutral float-left" title="Scanner Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Saxton Schultz and Isaiah Hymes.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

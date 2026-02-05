@@ -51,6 +51,7 @@
 <li class="toctree-l1"><a class="reference internal" href="selfscan.html">Selfscan Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="traceroute.html">Traceroute Module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scanner.html">Scanner Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="os_detection.html">OS Detection Module</a></li>
 </ul>
 
         </div>
@@ -86,6 +87,8 @@
  | <a href="#D"><strong>D</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#V"><strong>V</strong></a>
@@ -99,6 +102,13 @@
 
       <ul>
         <li><a href="usage.html#cmdoption-c">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --cve-scan
+
+      <ul>
+        <li><a href="usage.html#cmdoption-cV">command line option</a>
 </li>
       </ul></li>
       <li>
@@ -130,6 +140,13 @@
 </li>
       </ul></li>
       <li>
+    --os-detection
+
+      <ul>
+        <li><a href="usage.html#cmdoption-o">command line option</a>
+</li>
+      </ul></li>
+      <li>
     --ports
 
       <ul>
@@ -144,10 +161,24 @@
 </li>
       </ul></li>
       <li>
+    --service-scan
+
+      <ul>
+        <li><a href="usage.html#cmdoption-sV">command line option</a>
+</li>
+      </ul></li>
+      <li>
     --timeout
 
       <ul>
         <li><a href="usage.html#cmdoption-t">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --verbose
+
+      <ul>
+        <li><a href="usage.html#cmdoption-v">command line option</a>
 </li>
       </ul></li>
   </ul></td>
@@ -157,6 +188,13 @@
 
       <ul>
         <li><a href="usage.html#cmdoption-c">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -cV
+
+      <ul>
+        <li><a href="usage.html#cmdoption-cV">command line option</a>
 </li>
       </ul></li>
       <li>
@@ -188,6 +226,13 @@
 </li>
       </ul></li>
       <li>
+    -o
+
+      <ul>
+        <li><a href="usage.html#cmdoption-o">command line option</a>
+</li>
+      </ul></li>
+      <li>
     -p
 
       <ul>
@@ -202,10 +247,24 @@
 </li>
       </ul></li>
       <li>
+    -sV
+
+      <ul>
+        <li><a href="usage.html#cmdoption-sV">command line option</a>
+</li>
+      </ul></li>
+      <li>
     -t
 
       <ul>
         <li><a href="usage.html#cmdoption-t">command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -v
+
+      <ul>
+        <li><a href="usage.html#cmdoption-v">command line option</a>
 </li>
       </ul></li>
   </ul></td>
@@ -218,23 +277,53 @@
 </li>
       <li><a href="selfscan.html#selfscan._enumerate_pids">_enumerate_pids() (in module selfscan)</a>
 </li>
+      <li><a href="scanner.html#scanner.Scanner._get_cpe">_get_cpe() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._get_cves">_get_cves() (scanner.Scanner method)</a>
+</li>
       <li><a href="selfscan.html#selfscan._get_proc_net">_get_proc_net() (in module selfscan)</a>
 </li>
       <li><a href="selfscan.html#selfscan._hex_conversion">_hex_conversion() (in module selfscan)</a>
 </li>
-      <li><a href="scanner.html#scanner._icmp_scan">_icmp_scan() (in module scanner)</a>
+      <li><a href="scanner.html#scanner.Scanner._icmp_scan">_icmp_scan() (scanner.Scanner method)</a>
+</li>
+      <li><a href="selfscan.html#selfscan._list_inodes">_list_inodes() (in module selfscan)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._log_cves">_log_cves() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._null_probe">_null_probe() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._parse_banner">_parse_banner() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._parse_http">_parse_http() (scanner.Scanner method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="selfscan.html#selfscan._list_inodes">_list_inodes() (in module selfscan)</a>
+      <li><a href="scanner.html#scanner.Scanner._parse_openssh">_parse_openssh() (scanner.Scanner method)</a>
 </li>
       <li><a href="traceroute.html#traceroute._print_hop_info">_print_hop_info() (in module traceroute)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._print_host_header">_print_host_header() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._print_port_info">_print_port_info() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._print_scan_summary">_print_scan_summary() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._probe_http">_probe_http() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._probe_https">_probe_https() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._probe_postgresql">_probe_postgresql() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._probe_smtp">_probe_smtp() (scanner.Scanner method)</a>
 </li>
       <li><a href="traceroute.html#traceroute._save_graph_image">_save_graph_image() (in module traceroute)</a>
 </li>
       <li><a href="traceroute.html#traceroute._send_probes">_send_probes() (in module traceroute)</a>
 </li>
-      <li><a href="scanner.html#scanner._syn_scan">_syn_scan() (in module scanner)</a>
+      <li><a href="scanner.html#scanner.Scanner._service_scan">_service_scan() (scanner.Scanner method)</a>
+</li>
+      <li><a href="scanner.html#scanner.Scanner._syn_scan">_syn_scan() (scanner.Scanner method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -242,11 +331,19 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="os_detection.html#os_detection.check_for_increment_by_one_ipids">check_for_increment_by_one_ipids() (in module os_detection)</a>
+</li>
+      <li><a href="os_detection.html#os_detection.check_for_incremental_per_connection">check_for_incremental_per_connection() (in module os_detection)</a>
+</li>
+      <li><a href="os_detection.html#os_detection.check_for_random_ipid">check_for_random_ipid() (in module os_detection)</a>
+</li>
       <li>
     command line option
 
       <ul>
         <li><a href="usage.html#cmdoption-c">--create-image</a>
+</li>
+        <li><a href="usage.html#cmdoption-cV">--cve-scan</a>
 </li>
         <li><a href="usage.html#cmdoption-d">--do-not-scan</a>
 </li>
@@ -256,13 +353,21 @@
 </li>
         <li><a href="usage.html#cmdoption-m">--method</a>
 </li>
+        <li><a href="usage.html#cmdoption-o">--os-detection</a>
+</li>
         <li><a href="usage.html#cmdoption-p">--ports</a>
 </li>
         <li><a href="usage.html#cmdoption-s">--scan-type</a>
 </li>
+        <li><a href="usage.html#cmdoption-sV">--service-scan</a>
+</li>
         <li><a href="usage.html#cmdoption-t">--timeout</a>
 </li>
+        <li><a href="usage.html#cmdoption-v">--verbose</a>
+</li>
         <li><a href="usage.html#cmdoption-c">-c</a>
+</li>
+        <li><a href="usage.html#cmdoption-cV">-cV</a>
 </li>
         <li><a href="usage.html#cmdoption-d">-d</a>
 </li>
@@ -272,20 +377,38 @@
 </li>
         <li><a href="usage.html#cmdoption-m">-m</a>
 </li>
+        <li><a href="usage.html#cmdoption-o">-o</a>
+</li>
         <li><a href="usage.html#cmdoption-p">-p</a>
 </li>
         <li><a href="usage.html#cmdoption-s">-s</a>
 </li>
+        <li><a href="usage.html#cmdoption-sV">-sV</a>
+</li>
         <li><a href="usage.html#cmdoption-t">-t</a>
+</li>
+        <li><a href="usage.html#cmdoption-v">-v</a>
 </li>
         <li><a href="usage.html#cmdoption-m">ICMP}</a>, <a href="usage.html#cmdoption-s">[1]</a>
 </li>
       </ul></li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="scanner.html#scanner.PortInfo.confidence">confidence (scanner.PortInfo attribute)</a>
+</li>
+      <li><a href="scanner.html#scanner.PortInfo.cve_ids">cve_ids (scanner.PortInfo attribute)</a>
+</li>
+      <li><a href="scanner.html#scanner.ScanConfig.cve_scan">cve_scan (scanner.ScanConfig attribute)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="os_detection.html#os_detection.detect_os">detect_os() (in module os_detection)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="main.html#main.do_not_scan">do_not_scan() (in module main)</a>
 </li>
@@ -331,6 +454,8 @@
       <ul>
         <li><a href="main.html#module-main">main</a>
 </li>
+        <li><a href="os_detection.html#module-os_detection">os_detection</a>
+</li>
         <li><a href="scanner.html#module-scanner">scanner</a>
 </li>
         <li><a href="selfscan.html#module-selfscan">selfscan</a>
@@ -341,12 +466,47 @@
   </ul></td>
 </tr></table>
 
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    os_detection
+
+      <ul>
+        <li><a href="os_detection.html#module-os_detection">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="scanner.html#scanner.ScanConfig.os_detection">os_detection (scanner.ScanConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="scanner.html#scanner.PortInfo.port">port (scanner.PortInfo attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="scanner.html#scanner.PortInfo">PortInfo (class in scanner)</a>
+</li>
+      <li><a href="scanner.html#scanner.ScanConfig.ports">ports (scanner.ScanConfig attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="scanner.html#scanner.scan">scan() (in module scanner)</a>
+      <li><a href="scanner.html#scanner.Scanner.scan">scan() (scanner.Scanner method)</a>
 </li>
       <li><a href="selfscan.html#selfscan.scan_local_device">scan_local_device() (in module selfscan)</a>
+</li>
+      <li><a href="scanner.html#scanner.ScanConfig.scan_type">scan_type (scanner.ScanConfig attribute)</a>
+</li>
+      <li><a href="scanner.html#scanner.ScanConfig">ScanConfig (class in scanner)</a>
 </li>
       <li>
     scanner
@@ -355,10 +515,12 @@
         <li><a href="scanner.html#module-scanner">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="scanner.html#scanner.Scanner">Scanner (class in scanner)</a>
+</li>
       <li><a href="scanner.html#scanner.ScanType">ScanType (class in scanner)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     selfscan
 
@@ -366,6 +528,16 @@
         <li><a href="selfscan.html#module-selfscan">module</a>
 </li>
       </ul></li>
+      <li><a href="os_detection.html#os_detection.send_synack">send_synack() (in module os_detection)</a>
+</li>
+      <li><a href="os_detection.html#os_detection.send_traffic">send_traffic() (in module os_detection)</a>
+</li>
+      <li><a href="scanner.html#scanner.PortInfo.service">service (scanner.PortInfo attribute)</a>
+</li>
+      <li><a href="scanner.html#scanner.ScanConfig.service_scan">service_scan (scanner.ScanConfig attribute)</a>
+</li>
+      <li><a href="scanner.html#scanner.PortInfo.state">state (scanner.PortInfo attribute)</a>
+</li>
       <li><a href="scanner.html#scanner.ScanType.SYN">SYN (scanner.ScanType attribute)</a>
 </li>
   </ul></td>
@@ -374,7 +546,11 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="scanner.html#scanner.ScanConfig.targets">targets (scanner.ScanConfig attribute)</a>
+</li>
       <li><a href="traceroute.html#traceroute.TraceType.TCP">TCP (traceroute.TraceType attribute)</a>
+</li>
+      <li><a href="scanner.html#scanner.ScanConfig.timeout">timeout (scanner.ScanConfig attribute)</a>
 </li>
       <li><a href="traceroute.html#traceroute.trace">trace() (in module traceroute)</a>
 </li>
@@ -389,12 +565,16 @@
       </ul></li>
       <li><a href="traceroute.html#traceroute.TraceType">TraceType (class in traceroute)</a>
 </li>
+      <li><a href="os_detection.html#os_detection.ttl_probe">ttl_probe() (in module os_detection)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="scanner.html#scanner.ScanConfig.verbose">verbose (scanner.ScanConfig attribute)</a>
+</li>
       <li><a href="main.html#main.verify_ip">verify_ip() (in module main)</a>
 </li>
       <li><a href="main.html#main.verify_max_hops">verify_max_hops() (in module main)</a>
@@ -404,6 +584,8 @@
       <li><a href="main.html#main.verify_ports">verify_ports() (in module main)</a>
 </li>
       <li><a href="main.html#main.verify_timeout">verify_timeout() (in module main)</a>
+</li>
+      <li><a href="scanner.html#scanner.PortInfo.version">version (scanner.PortInfo attribute)</a>
 </li>
   </ul></td>
 </tr></table>

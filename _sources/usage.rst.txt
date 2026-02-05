@@ -42,7 +42,7 @@ Command-line Flags
 
 .. option:: -d, --do-not-scan <PATH>
 
-   Absolute or relative file path to a txt file where each line in the file is
+   Absolute or relative file path to a text file where each line in the file is
    either a single IP address or CIDR IP range. Every listed IP will not be
    scanned when the network scan is performed. Defaults to ``""``.
 
@@ -55,6 +55,36 @@ Command-line Flags
    generated image is a visualization of the traceroute operations that were 
    performed. This helps provide the user with a way to visualize the topology
    of the network they are scanning.
+
+.. option:: -o, --os-detection
+
+   If this flag is included, a set of tests will be performed against each
+   alive host during the network scan in order to take an educated guess
+   at the operating system of each alive host. This works for both ``ICMP``
+   and ``SYN`` scans.
+
+.. option:: -sV, --service-scan
+
+   If this flag is included, each open port will be further scanned in order
+   to identify the service running on the port and its associated version if
+   it can be determined. This will include a confidence level with regards to
+   identification of the service running on the open port. This flag will only
+   work for ``SYN`` scans.
+
+.. option:: -cV, --cve-scan
+
+   If this flag is included, each service associated with an open port will
+   be queried via its version number if it has one, for any relevant CVEs. Any
+   relevant CVEs will be stored in an output file named ``cve_report.txt``, which
+   will be saved in the local directory where the program was executed. This
+   flag will only work if the scan type is ``SYN``, and the service scan flag
+   is included as well.
+
+.. option:: -v, --verbose
+
+   If this flag is included, all scanned ports will be displayed during a SYN
+   scan. Otherwise, only open ports will be displayed. This flag only works for
+   ``SYN`` scans.
 
 Default ports
 --------------
@@ -103,6 +133,8 @@ SYN scan.
 +------+----------+
 | 3389 | RDP      |
 +------+----------+
+| 5432 | Postgres |
++------+----------+
 
 Example Usage
 -------------
@@ -116,7 +148,7 @@ Command
 
 .. code-block:: bash
 
-    sudo python3 main.py -i 1.1.1.1 -l 20 -t 1 -c
+   sudo python3 main.py -i 127.0.0.1 -s SYN -sV -cV -o -t 1
 
 .. note::
 
@@ -125,7 +157,7 @@ Command
 
 .. code-block:: bash
 
-    sudo Network-Analyzer/venv/bin/python3 main.py -i 1.1.1.1 -l 20 -t 1 -c
+   sudo ../venv/bin/python3 main.py -i 127.0.0.1 -s SYN -sV -cV -o -t 1
 
 Output
 ~~~~~~
@@ -138,64 +170,83 @@ Output
 .. code-block:: bash
 
    ========[STARTING NETWORK SELF SCAN]========
-   Inode: 19538
-   PID: 4886
-   Comm: python3
+   Inode: 31276
+   PID: 10807
+   Comm: nginx
    Proto: TCP
-   Local: 0.0.0.0:8000
+   Local: 0.0.0.0:80
    Remote: 0.0.0.0:*
    State: LISTEN
-   Cmdline: python3 -m http.server 8000
+   Cmdline: nginx: worker process
 
-   Inode: 19615
-   PID: 4972
-   Comm: nc
-   Proto: UDP
-   Local: 0.0.0.0:12345
+   Inode: 25902
+   PID: 8270
+   Comm: sshd
+   Proto: TCP
+   Local: 0.0.0.0:22
    Remote: 0.0.0.0:*
    State: LISTEN
-   Cmdline: nc -ulp 12345
+   Cmdline: sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+
+   Inode: 31277
+   PID: 10807
+   Comm: nginx
+   Proto: TCP6
+   Local: :::80
+   Remote: :::*
+   State: LISTEN
+   Cmdline: nginx: worker process
+
+   Inode: 25904
+   PID: 8270
+   Comm: sshd
+   Proto: TCP6
+   Local: :::22
+   Remote: :::*
+   State: LISTEN
+   Cmdline: sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
 
 
-   ========[STARTING ICMP NETWORK SCAN]========
-   Host: 1.1.1.1   State: Up
-   ICMP scan complete: 1 IP addresses (1 hosts up) scanned in 0.12 seconds
+   ========[STARTING SYN NETWORK SCAN]=========
+
+   Host: 127.0.0.1
+   OS best guess: Linux
+   4/4 tests passed
+
+   Reasoning:
+   (1). TTL is not above 64.
+   (2). Sends IPID of zero on RST packets.
+   (3). IPID does not consistently increment by one.
+   (4). Each IPID is greater than the previous.
+   ------------------------------------------------------------------------------------------------------------------------------------------------------
+   PORT         STATUS     SERVICE          VERSION                                                           CONFIDENCE
+   22/tcp       open       ssh              OpenSSH 10.0p2 Debian-5                                           HIGH (direct banner identification)
+   80/tcp       open       http             nginx/1.26.3                                                      MEDIUM (protocol-specific response)
+   ------------------------------------------------------------------------------------------------------------------------------------------------------
+   SYN scan complete: 1 IP addresses (1 hosts up) scanned in 33.45 seconds
 
    ===========[STARTING ICMP TRACEROUTE]===========
 
-   traceroute to 1.1.1.1, 20 hops max
-   --------------------------------------------------
-   1 - 192.168.1.1 - 43.72ms  43.96ms  39.43ms
+   traceroute to 127.0.0.1, 30 hops max
+   ----------------------------------------------------------------------
+   1 - 127.0.0.1 - 30.19ms  39.43ms  31.88ms  (Destination Reached)
 
-   2 - 10.61.241.195 - 66.9ms  55.89ms  75.6ms
-
-   3 - 24.153.86.165 - 55.3ms  67.45ms  62.79ms
-
-   4 - 24.124.128.209 - 68.19ms  67.65ms  75.56ms
-
-   5 - 68.86.96.5 - 63.35ms  87.38ms  67.48ms
-
-   6 - 24.124.128.121 - 67.48ms  67.38ms  67.48ms
-
-   7 - 68.86.93.5 - 67.43ms  67.27ms  *
-
-   8 - 96.110.44.86 - 75.09ms  91.77ms  67.39ms
-
-   9 - *  *  *  (No Response)
-
-   10 - 108.162.243.19 - 71.06ms  83.45ms  75.55ms
-
-   11 - 1.1.1.1 - 67.02ms  83.92ms  75.46ms  (Destination Reached)
-
-   --------------------------------------------------
+   ----------------------------------------------------------------------
 
 
-In the above output, each of the three times in milliseconds next to each hop
+
+In the above output, each of the three times in milliseconds next to the hop
 represent the round-trip times for each of the three probe packets sent to that
 hop.
 
-Generated Traceroute Visualization
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Generated CVE Report File
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. literalinclude:: logs/cve_report.txt
+   :language: none
+
+Example Traceroute Visualization to 1.1.1.1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. image:: images/traceroute.png
 

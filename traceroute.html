@@ -66,6 +66,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scanner.html">Scanner Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="os_detection.html">OS Detection Module</a></li>
 </ul>
 
         </div>
@@ -106,10 +107,12 @@ host. At each hop, the IP address of the hop and the time it took to reply to
 each of the three probe packets is printed to the screen. Additionally, the
 user can specify whether they want an image created, which visualizes the
 traceroute operations that took place.</p>
-<dl class="simple">
-<dt>Typical usage example:</dt><dd><p>trace((“1.1.1.1”, “8.8.8.8”), TraceType.TCP, 30, 0.5)</p>
-</dd>
-</dl>
+<p>Typical usage example:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">trace</span><span class="p">((</span><span class="s2">&quot;1.1.1.1&quot;</span><span class="p">,</span> <span class="s2">&quot;8.8.8.8&quot;</span><span class="p">),</span> <span class="n">TraceType</span><span class="o">.</span><span class="n">TCP</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="traceroute.TraceType">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">TraceType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#traceroute.TraceType" title="Link to this definition">¶</a></dt>
@@ -181,7 +184,7 @@ executed.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="traceroute._send_probes">
-<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">_send_probes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#traceroute.TraceType" title="traceroute.TraceType"><span class="pre">TraceType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ttl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Packet</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute._send_probes" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">traceroute.</span></span><span class="sig-name descname"><span class="pre">_send_probes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#traceroute.TraceType" title="traceroute.TraceType"><span class="pre">TraceType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ttl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Packet</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#traceroute._send_probes" title="Link to this definition">¶</a></dt>
 <dd><p>Helper method that sends three probe packets to the next hop.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
