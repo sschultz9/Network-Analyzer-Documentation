@@ -100,53 +100,55 @@ TTL value of 64.</p>
 <p>The IPID is tested with a sequence of tests.
 The program will check if unprompted SYN/ACKs receive RSTs with IPIDs of 0.
 Next, the program will test if the TCP IPID field consistently increments by 1.
-If the IPID is incrementing by 1, it is then checked for per-bucket or
-per-connection behavior.
+If the IPID is incrementing by 1, it is then checked for per-connection
+behavior.
 If the IPID did not increment by 1, The IPID is also checked for ‘random’
 behavior. If each IPID is consistently greater than the one preceding it,
 then it is determined to be ‘not random’. If the IPIDs break this chain
 of sequence, then they are considered random.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="os_detection.check_for_increment_by_one_ipids">
-<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">check_for_increment_by_one_ipids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#os_detection.check_for_increment_by_one_ipids" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">check_for_increment_by_one_ipids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#os_detection.check_for_increment_by_one_ipids" title="Link to this definition">¶</a></dt>
 <dd><p>Checks if the IPIDs from a specified target are incrementing by 1.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether the IPID value seems to increment by 1.</p>
+<dd class="field-even"><p>Whether the IPID value seems to increment by 1. If no ICMP response
+was received, None is returned.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p>bool | None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="os_detection.check_for_incremental_per_connection">
-<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">check_for_incremental_per_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#os_detection.check_for_incremental_per_connection" title="Link to this definition">¶</a></dt>
-<dd><p>Determine if the IPID increment is per-connection or per-bucket.</p>
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">check_for_incremental_per_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#os_detection.check_for_incremental_per_connection" title="Link to this definition">¶</a></dt>
+<dd><p>Determine if the IPID increment is per-connection.</p>
 <p>This will only  run if the IPIDs are previously found to be globally
 incrementing. If so, this test will check if the IPID seems to
-be incrementing on a shared (bucket) counter, or if the IPID
+be incrementing on a shared (bucket or global) counter, or if the IPID
 is specific to each connection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether the device has a globally incrementing IPID.</p>
+<dd class="field-even"><p>Whether the device has a per-connection IPID. If no ICMP response
+was received, None is returned.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p>bool | None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="os_detection.check_for_random_ipid">
-<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">check_for_random_ipid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#os_detection.check_for_random_ipid" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">check_for_random_ipid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#os_detection.check_for_random_ipid" title="Link to this definition">¶</a></dt>
 <dd><p>Evaluate if the IPID seems to be random or incrementing on some range.</p>
 <p>This test will check if the IPID values seem to be ‘random’.
 This is done by sending a stream of traffic and seeing if the IPIDs
@@ -156,10 +158,11 @@ are consistently increasing by some value.</p>
 <dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether the device appears to have a random IPID.</p>
+<dd class="field-even"><p>Whether the device appears to have a random IPID. If no ICMP
+response was received, None is returned.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p>bool | None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -177,17 +180,18 @@ are consistently increasing by some value.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="os_detection.send_synack">
-<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">send_synack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#os_detection.send_synack" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">os_detection.</span></span><span class="sig-name descname"><span class="pre">send_synack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#os_detection.send_synack" title="Link to this definition">¶</a></dt>
 <dd><p>Sends unprompted SYN/ACK traffic and checks if the IPID is zero on RST.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether the IPIDs are zero.</p>
+<dd class="field-even"><p>Whether the IPIDs are zero. Returns None if no response was
+received for the sent SYN/ACK packets.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
+<dd class="field-odd"><p>bool | None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -222,7 +226,8 @@ are consistently increasing by some value.</p>
 <dd class="field-odd"><p><strong>target</strong> (<em>str</em>) – The IP address to send packets to.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The TTL received from the single probe.</p>
+<dd class="field-even"><p>The TTL received from the single probe. Returns None if no
+responses were received.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int | None</p>
