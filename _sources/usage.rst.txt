@@ -78,7 +78,7 @@ Command-line Flags
    relevant CVEs will be stored in an output file named ``cve_report.txt``, which
    will be saved in the local directory where the program was executed. This
    flag will only work if the scan type is ``SYN``, and the service scan flag
-   is included as well.
+   must be included as well.
 
 .. option:: -v, --verbose
 
